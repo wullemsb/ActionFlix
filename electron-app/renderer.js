@@ -303,8 +303,6 @@ const translations = {
     'toast.noMovieToSave': 'Aucun film à sauvegarder!',
     'toast.savedToCollection': 'Ajouté à votre collection!',
     'toast.removedFromCollection': 'Retiré de la collection 💥',
-    'toast.creatingPoster': 'Création de l\'affiche d\'action...',
-    'toast.transformComplete': 'Transformation terminée!',
     'toast.failedToLoadTop10': 'Échec du chargement du Top 10',
     'toast.failedToLoadCollection': 'Échec du chargement de la collection'
   },
