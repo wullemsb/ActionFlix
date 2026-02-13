@@ -4,7 +4,7 @@ The Physical View describes the deployment architecture, hardware topology, netw
 
 ## Overview
 
-LoveFlix can be deployed in multiple configurations:
+ActionFlix can be deployed in multiple configurations:
 1. **Python CLI**: Local execution on developer machine
 2. **Electron Desktop**: Standalone desktop application on end-user systems
 3. **Hybrid**: Desktop app with cloud API dependencies
@@ -21,7 +21,7 @@ LoveFlix can be deployed in multiple configurations:
 │  │  Python Runtime (3.8+)           │      │
 │  │                                  │      │
 │  │  ┌────────────────────────┐     │      │
-│  │  │  LoveFlix CLI          │     │      │
+│  │  │  ActionFlix CLI        │     │      │
 │  │  │  (src/*.py)            │     │      │
 │  │  └───────────┬────────────┘     │      │
 │  │              │                   │      │
@@ -57,7 +57,7 @@ LoveFlix can be deployed in multiple configurations:
 │              End-User Machine                           │
 │                                                         │
 │  ┌───────────────────────────────────────────────┐     │
-│  │  LoveFlix Desktop Application                 │     │
+│  │  ActionFlix Desktop Application               │     │
 │  │                                               │     │
 │  │  ┌─────────────────────────────────────┐     │     │
 │  │  │  Main Process (Node.js)             │     │     │
@@ -77,7 +77,7 @@ LoveFlix can be deployed in multiple configurations:
 │  ┌──────────────────────────────────────────────┐      │
 │  │  Local Storage                               │      │
 │  │                                              │      │
-│  │  - AppData/loveflix/config.json (Settings)  │      │
+│  │  - AppData/actionflix/config.json (Settings) │      │
 │  │  - movies/ (Collections)                    │      │
 │  │    └── [Movie_Name]/                        │      │
 │  │        ├── README.md                        │      │
@@ -109,7 +109,7 @@ LoveFlix can be deployed in multiple configurations:
 │            Client Side                          │
 │                                                 │
 │  ┌──────────────────────────────────────┐      │
-│  │  LoveFlix Application                │      │
+│  │  ActionFlix Application              │      │
 │  │  (CLI or Desktop)                    │      │
 │  └────────────┬─────────────────────────┘      │
 │               │                                 │
@@ -154,7 +154,7 @@ LoveFlix can be deployed in multiple configurations:
 ### Python CLI Installation
 
 **Manual Installation**:
-1. Clone repository: `git clone https://github.com/janvanwassenhove/LoveFlix.git`
+1. Clone repository: `git clone https://github.com/wullemsb/ActionFlix.git`
 2. Install dependencies: `pip install -r requirements.txt`
 3. Set API key: `export OPENAI_API_KEY="sk-..."`
 4. Run: `python src/main.py`
@@ -164,25 +164,25 @@ LoveFlix can be deployed in multiple configurations:
 ### Electron Desktop Installation
 
 **Windows**:
-1. Download `LoveFlix Setup 1.0.0.exe`
+1. Download `ActionFlix Setup 1.0.0.exe`
 2. Run installer (NSIS)
 3. Choose installation directory
 4. Launch from Start Menu or Desktop shortcut
 
 **Installed Locations**:
-- **Program Files**: `C:\Program Files\LoveFlix\`
-- **User Data**: `%APPDATA%\loveflix\`
+- **Program Files**: `C:\Program Files\ActionFlix\`
+- **User Data**: `%APPDATA%\actionflix\`
 - **Desktop Shortcut**: Optional during install
 
 **macOS**:
-1. Download `LoveFlix-1.0.0.dmg`
+1. Download `ActionFlix-1.0.0.dmg`
 2. Open DMG file
-3. Drag LoveFlix to Applications folder
+3. Drag ActionFlix to Applications folder
 4. Launch from Applications
 
 **Installed Locations**:
-- **Application**: `/Applications/LoveFlix.app`
-- **User Data**: `~/Library/Application Support/loveflix/`
+- **Application**: `/Applications/ActionFlix.app`
+- **User Data**: `~/Library/Application Support/actionflix/`
 
 **Auto-Update**: Not implemented (manual updates required)
 
@@ -258,15 +258,15 @@ Client App ──HTTPS──> api.themoviedb.org
 User Home Directory
 │
 ├── [Installation Directory]
-│   └── LoveFlix/                    # Application binaries
-│       ├── LoveFlix.exe             # Main executable (Windows)
+│   └── ActionFlix/                  # Application binaries
+│       ├── ActionFlix.exe           # Main executable (Windows)
 │       ├── resources/               # Electron resources
 │       └── locales/                 # Language files
 │
-├── AppData/Roaming/loveflix/        # Windows user data
+├── AppData/Roaming/actionflix/      # Windows user data
 │   └── config.json                  # Encrypted settings
 │
-├── Library/Application Support/loveflix/  # macOS user data
+├── Library/Application Support/actionflix/  # macOS user data
 │   └── config.json
 │
 └── [Workspace]/movies/              # Collection storage

@@ -1,13 +1,13 @@
-# GitHub Copilot Instructions for LoveFlix
+# GitHub Copilot Instructions for ActionFlix
 
 ## Project Overview
 
-LoveFlix is a fun application that transforms any movie into a hyper-romantic version using AI. It generates romantic titles, summaries, and movie posters.
+ActionFlix is a fun application that transforms any rom-com into an explosive action blockbuster using AI. It generates action-packed titles, summaries, and movie posters.
 
 ## Project Structure
 
 ```
-LoveFlix/
+ActionFlix/
 ├── electron-app/          # Desktop application (Electron + Node.js)
 │   ├── main.js            # Main process - IPC handlers, OpenAI API calls
 │   ├── preload.js         # Preload script - secure IPC bridge
@@ -16,8 +16,8 @@ LoveFlix/
 │   ├── renderer.js        # Frontend logic
 │   └── package.json       # Dependencies and build config
 ├── src/                   # Original Python CLI version
-├── start-loveflix.bat     # Windows startup script
-├── start-loveflix.sh      # macOS/Linux startup script
+├── start-actionflix.bat   # Windows startup script
+├── start-actionflix.sh    # macOS/Linux startup script
 └── README.md              # Main documentation
 ```
 
@@ -36,8 +36,8 @@ LoveFlix/
    - `electron-app/README.md` (desktop app specific docs)
 
 2. **Always update startup scripts** if dependencies or startup process changes:
-   - `start-loveflix.bat` (Windows)
-   - `start-loveflix.sh` (macOS/Linux)
+   - `start-actionflix.bat` (Windows)
+   - `start-actionflix.sh` (macOS/Linux)
 
 3. **Maintain consistency** between CLI and desktop app features when applicable
 
@@ -98,8 +98,8 @@ When making changes, ensure these are updated:
 
 - [ ] `README.md` - Main features list and quick start
 - [ ] `electron-app/README.md` - Detailed desktop app docs
-- [ ] `start-loveflix.bat` - Windows script (if startup changes)
-- [ ] `start-loveflix.sh` - macOS script (if startup changes)
+- [ ] `start-actionflix.bat` - Windows script (if startup changes)
+- [ ] `start-actionflix.sh` - macOS script (if startup changes)
 - [ ] `RELEASE.md` - If release process changes
 - [ ] This file - If project structure changes
 
@@ -123,7 +123,7 @@ See [RELEASE.md](../RELEASE.md) for full documentation.
 
 ### Auto-Update System
 
-LoveFlix includes automatic update functionality:
+ActionFlix includes automatic update functionality:
 - Updates are checked on app startup
 - Users are notified in-app when updates are available
 - User data (API keys, collections, settings) is preserved across updates

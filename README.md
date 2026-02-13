@@ -1,44 +1,44 @@
-# Loveflix 💕
+# ActionFlix 💥
 
-"Because even horror movies get a happily ever after... and everything is better with a romantic twist!"
+"Because even rom-coms get explosive transformations... and everything is better with action!"
 
-So, it's Valentine's Day. You’re all set for an epic action movie night—popcorn in hand, ready to witness explosions, car chases, and maybe even a few well-timed one-liners. But then... disaster strikes.
+So, it's Action Movie Night. You’re all set for an epic evening—popcorn in hand, ready to witness explosions, car chases, and maybe even a few well-timed one-liners. But then... disaster strikes.
 
 "Can we watch something romantic instead?" 😱
 
-Your dreams of high-speed pursuits are about to be replaced by slow-motion hand-holding. But wait! That’s where Romantic Movie Maker saves the day!
+Your dreams of high-speed pursuits are about to be replaced by slow-motion hand-holding. But wait! That’s where ActionFlix saves the day!
 
-Simply enter your favorite movie title, and BOOM—we sprinkle some heart-shaped magic dust on it, turning it into the most romantic film ever.
+Simply enter your partner's favorite rom-com title, and BOOM—we sprinkle some explosive action magic on it, turning it into the most action-packed film ever.
 
-Die Hard? Now it's Love Hard—a tender tale of a man desperately trying to reunite with his true love on Christmas Eve.
-Mad Max? It’s now Madly in Love Max—a post-apocalyptic romance where fuel is scarce, but love is eternal.
-Terminator? Welcome to I’ll Be Back… for You—a heartwarming story about an AI learning to love.
-Not only does this app generate a romantic title and summary, but it also creates a romanticized movie poster! Impress your partner with a film that feels romantic—even if it still has a few explosions.
+The Notebook? Now it's The Detonator—a high-octane tale of a man fighting through enemy lines to reunite with his teammate.
+Love Actually? It's now Die Actually—a multi-threaded action thriller where love is lethal and everyone's armed.
+Sleepless in Seattle? Welcome to Sleepless Sniper—a tale of a sharpshooter who never rests until the mission is complete.
+Not only does this app generate an action-packed title and summary, but it also creates an explosive movie poster! Impress your partner with a film that feels action-packed—even if it started as a rom-com.
 
-Your movie night is saved. Your relationship is thriving. You’re welcome. 🎩💖
+Your movie night is saved. Your relationship is thriving. You’re welcome. 🎩💥
 
 ## 🖥️ Desktop App (NEW!)
 
-LoveFlix is now available as a **Netflix-styled desktop application** for Windows and macOS!
+ActionFlix is now available as a **Netflix-styled desktop application** for Windows and macOS!
 
 ### Desktop Features
-- 🎨 **Beautiful Netflix-inspired UI** - Dark theme with romantic accents
-- 🎬 **Transform Any Movie** - Enter any title and get instant romanticization
-- 🎭 **40+ Romantic Poster Styles** - Each poster uses a randomly selected aesthetic from our diverse collection:
-  - Sunset & warm tones (Golden Hour, Amber Dream, Sunrise Promise)
-  - Ocean & water themes (Moonlit Waves, Tropical Paradise, Underwater Love)
-  - Nature & gardens (Cherry Blossoms, Autumn Embrace, Lavender Fields)
-  - Winter wonderlands (Northern Lights, Ice Palace, Fireside Glow)
-  - Urban romance (City Lights, Rain-Kissed, Neon Dreams)
-  - Classic & vintage (Victorian Dreams, French Riviera, Art Deco)
-  - Fantasy & magical (Fairytale Castle, Ethereal Mist, Enchanted Forest)
-  - And many more artistic styles!
+- 🎨 **Beautiful Netflix-inspired UI** - Dark theme with explosive action accents
+- 🎬 **Transform Any Rom-Com** - Enter any romantic movie title and get instant actionization
+- 💥 **40+ Action Poster Styles** - Each poster uses a randomly selected aesthetic from our diverse collection:
+  - Explosions & Fire (Inferno Blast, Fireball Strike, Explosive Entry)
+  - Military & Tactical (Spec Ops Mission, Black Ops, Combat Zone)
+  - Urban Action (Rooftop Chase, Street Fighter, City Under Siege)
+  - Sci-Fi Action (Cyberpunk Streets, Space Battle, Mech Warfare)
+  - Post-Apocalyptic (Wasteland Survival, Desert Ruins, Survivor Mode)
+  - Martial Arts (Kung Fu Master, Samurai Warrior, Street Brawl)
+  - Spy/Thriller (Agent Mode, Surveillance, Undercover Operation)
+  - And many more explosive styles!
 - 📺 **Live Top 10 from TMDB** - Real-time popular movies and shows by country
 - 🌍 **Country-Specific Top 10** - Select your country to see region-specific trending content
-- 📈 **Romanticize All 10** - Transform an entire Top 10 category at once with a single click
+- 🔥 **Actionize All 10** - Transform an entire Top 10 category at once with a single click
 - 💾 **Netflix-Style Collection** - Your collection now features:
   - 🎬 Hero banner with featured movie
-  - 📁 Smart romantic subcategories (Passionate Dramas, Star-Crossed Lovers, Action Romance, Fantasy Love, etc.)
+  - 📁 Smart action subcategories (High-Octane Thrillers, Rival Warriors, Pure Action, Fantasy Epics, etc.)
   - 📺 Horizontal scrolling rows like Netflix
   - 🏆 Top 10 collections with ranking display
 - 🤖 **Multiple AI Models** - Choose from DALL-E 2/3, GPT Image 1/1.5/Mini, GPT-5.2/Mini/Nano
@@ -49,7 +49,7 @@ LoveFlix is now available as a **Netflix-styled desktop application** for Window
 
 1. **OpenAI API Key** (Required for movie transformation)
    - Get it from: https://platform.openai.com/api-keys
-   - Used for: Generating romantic titles, summaries, and posters
+   - Used for: Generating action-packed titles, summaries, and posters
 
 2. **TMDB API Key** (Required for Top 10 feature)
    - Get it from: https://www.themoviedb.org/settings/api
@@ -60,12 +60,12 @@ Add both API keys in the app's Settings menu.
 
 ### Quick Start (Desktop)
 
-**Windows:** Double-click `start-loveflix.bat`
+**Windows:** Double-click `start-actionflix.bat`
 
 **macOS/Linux:**
 ```bash
-chmod +x start-loveflix.sh
-./start-loveflix.sh
+chmod +x start-actionflix.sh
+./start-actionflix.sh
 ```
 
 **Or manually:**
@@ -88,17 +88,17 @@ See [electron-app/README.md](electron-app/README.md) for full documentation.
 
 ## Features (CLI Version)
 
-Turn any movie title, summary & poster into a romantic masterpiece with our powerful and fun tools! 
-Whether you're convincing your partner that Die Hard is a love story or just want a fresh twist on your favorite films, Loveflix has got you covered.
+Turn any rom-com title, summary & poster into an action-packed masterpiece with our powerful and fun tools! 
+Whether you're transforming The Notebook into an explosive thriller or giving Love Actually a deadly twist, ActionFlix has got you covered.
 
 ## Installation
 
-To get started with Loveflix, follow these steps:
+To get started with ActionFlix, follow these steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/janvanwassenhove/LoveFlix.git
-   cd Loveflix
+   git clone https://github.com/wullemsb/ActionFlix.git
+   cd ActionFlix
    ```
 
 2. Install the required dependencies:
@@ -133,7 +133,7 @@ To run the application, execute the following command in your terminal:
 python src/main.py
 ```
 
-You will be prompted to enter the title of the movie you wish to romanticize. After entering the title, the application will process it and provide you with a romanticized title, summary, and an movie poster in the movies directory.
+You will be prompted to enter the title of the rom-com you wish to actionize. After entering the title, the application will process it and provide you with an action-packed title, summary, and a movie poster in the movies directory.
 
 ## 🔄 Auto-Update Feature
 
@@ -148,10 +148,10 @@ The desktop app includes automatic update functionality:
 ### User Data Location
 
 Your data is safely stored in:
-- **Windows**: `%APPDATA%\loveflix\`
-- **macOS**: `~/Library/Application Support/loveflix/`
+- **Windows**: `%APPDATA%\actionflix\`
+- **macOS**: `~/Library/Application Support/actionflix/`
 
-This data persists across all updates, ensuring you never lose your romantic movie collection!
+This data persists across all updates, ensuring you never lose your action movie collection!
 
 ## 🚀 For Developers: Creating Releases
 
@@ -177,7 +177,7 @@ This will:
 
 ## OpenAI API Integration
 
-This application utilizes the OpenAI API to generate romanticized content. Ensure you have a valid API key and that you adhere to the usage policies set forth by OpenAI.
+This application utilizes the OpenAI API to generate action-packed content. Ensure you have a valid API key and that you adhere to the usage policies set forth by OpenAI.
 
 ## Contributing
 

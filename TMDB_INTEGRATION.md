@@ -2,7 +2,7 @@
 
 ## What Changed
 
-LoveFlix now fetches **live Top 10 data from The Movie Database (TMDB)** to inspire you. The Top 10 feature is now **region-specific** based on your selected country.
+ActionFlix now fetches **live Top 10 data from The Movie Database (TMDB)** to inspire you. The Top 10 feature is now **region-specific** based on your selected country.
 
 ## New Features
 
@@ -65,7 +65,7 @@ LoveFlix now fetches **live Top 10 data from The Movie Database (TMDB)** to insp
 4. Request an API key (choose "Developer" option)
 5. Accept the terms and provide basic information
 6. Copy your API key
-7. Add it in LoveFlix Settings
+7. Add it in ActionFlix Settings
 
 ## How It Works
 

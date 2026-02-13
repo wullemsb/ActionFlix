@@ -1,4 +1,4 @@
-# LoveFlix Release Quick Reference
+# ActionFlix Release Quick Reference
 
 ## 🚀 Common Commands
 
@@ -87,9 +87,9 @@ electron-app/dist/
 ```
 
 ### Files Created:
-- `LoveFlix Setup {version}.exe` - Windows
-- `LoveFlix-{version}.dmg` - macOS Intel
-- `LoveFlix-{version}-arm64.dmg` - macOS ARM
+- `ActionFlix Setup {version}.exe` - Windows
+- `ActionFlix-{version}.dmg` - macOS Intel
+- `ActionFlix-{version}-arm64.dmg` - macOS ARM
 
 ---
 

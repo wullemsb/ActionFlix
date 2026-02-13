@@ -4,14 +4,14 @@ The Development View describes the software module organization, library depende
 
 ## Overview
 
-LoveFlix consists of two separate applications with different technology stacks:
+ActionFlix consists of two separate applications with different technology stacks:
 1. **Python CLI Application** - Python 3.x with minimal dependencies
 2. **Electron Desktop Application** - Node.js and Electron framework
 
 ## Project Structure
 
 ```
-LoveFlix/
+ActionFlix/
 ├── .github/
 │   ├── copilot-instructions.md           # Main Copilot guidelines
 │   └── architecture-copilot-instructions.md  # Architecture doc maintenance
@@ -53,8 +53,8 @@ LoveFlix/
 │
 ├── README.md                            # Project documentation
 ├── requirements.txt                     # Python dependencies
-├── start-loveflix.bat                   # Windows launcher
-├── start-loveflix.sh                    # macOS/Linux launcher
+├── start-actionflix.bat                   # Windows launcher
+├── start-actionflix.sh                    # macOS/Linux launcher
 └── TMDB_INTEGRATION.md                  # TMDB API integration docs
 ```
 
@@ -152,7 +152,7 @@ npm install
 
 **Electron App Key Dependencies**:
 ```
-loveflix@1.0.0
+actionflix@1.0.0
 ├── openai@4.20.1
 │   ├── node-fetch@^2.6.7
 │   ├── form-data@^4.0.0
@@ -193,8 +193,8 @@ npm run build:all   # All platforms
 ```json
 {
   "build": {
-    "appId": "com.loveflix.app",
-    "productName": "LoveFlix",
+    "appId": "com.actionflix.app",
+    "productName": "ActionFlix",
     "directories": {
       "output": "dist"
     },
@@ -211,8 +211,8 @@ npm run build:all   # All platforms
 ```
 
 **Build Output**:
-- **Windows**: `dist/LoveFlix Setup 1.0.0.exe` (NSIS installer)
-- **macOS**: `dist/LoveFlix-1.0.0.dmg` (disk image)
+- **Windows**: `dist/ActionFlix Setup 1.0.0.exe` (NSIS installer)
+- **macOS**: `dist/ActionFlix-1.0.0.dmg` (disk image)
 - **Unpacked**: `dist/win-unpacked/` or `dist/mac/`
 
 ## Development Workflow
@@ -293,8 +293,8 @@ npm run build:all   # All platforms
 
 - **API Keys**: Environment variables (priority) or electron-store
 - **Settings Storage**: `electron-store` package
-  - Location: `%APPDATA%\loveflix\config.json` (Windows)
-  - Location: `~/Library/Application Support/loveflix/config.json` (macOS)
+  - Location: `%APPDATA%\actionflix\config.json` (Windows)
+  - Location: `~/Library/Application Support/actionflix/config.json` (macOS)
 - **Settings Schema**:
   ```json
   {

@@ -1,10 +1,10 @@
 # Logical View
 
-The Logical View describes the key abstractions, classes, and their relationships in the LoveFlix application.
+The Logical View describes the key abstractions, classes, and their relationships in the ActionFlix application.
 
 ## Overview
 
-LoveFlix consists of two implementations:
+ActionFlix consists of two implementations:
 1. **Python CLI Application** - Original command-line interface
 2. **Electron Desktop Application** - Modern GUI with enhanced features
 
@@ -48,8 +48,8 @@ LoveFlix consists of two implementations:
 **OpenAIClient**
 - **Responsibility**: Interface with OpenAI API for content generation
 - **Key Methods**:
-  - `generate_romantic_title(title, language)` - Generate romantic title
-  - `generate_romantic_summary(title, language)` - Generate romantic summary
+  - `generate_action_title(title, language)` - Generate action-packed title
+  - `generate_action_summary(title, language)` - Generate action-packed summary
   - `generate_movie_poster(title, summary)` - Generate movie poster image
 - **Dependencies**: OpenAI SDK
 
@@ -105,7 +105,7 @@ LoveFlix consists of two implementations:
   - File system operations for collections
   - Settings persistence
 - **Key IPC Handlers**:
-  - `transform-movie` - Transform movie to romantic version
+  - `transform-movie` - Transform movie to action-packed version
   - `save-api-key` - Store OpenAI API key
   - `save-tmdb-key` - Store TMDB API key
   - `get-collections` - Retrieve saved movie collections
@@ -143,8 +143,8 @@ LoveFlix consists of two implementations:
 ```javascript
 {
   originalTitle: String,
-  romanticTitle: String,
-  romanticSummary: String,
+  actionTitle: String,
+  actionSummary: String,
   posterUrl: String,
   language: String,
   textModel: String,      // e.g., "gpt-5.2"

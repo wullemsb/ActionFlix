@@ -4,11 +4,11 @@ The Scenarios view describes the key use cases that tie together the other archi
 
 ## Overview
 
-LoveFlix scenarios illustrate the end-to-end workflows that users perform to transform movies into romantic versions, manage their collections, and discover trending content.
+ActionFlix scenarios illustrate the end-to-end workflows that users perform to transform movies into action-packed versions, manage their collections, and discover trending content.
 
 ## Primary Use Cases
 
-### UC-01: Transform a Movie to Romantic Version
+### UC-01: Transform a Movie to Action-Packed Version
 
 **Actor**: End User
 
@@ -17,33 +17,33 @@ LoveFlix scenarios illustrate the end-to-end workflows that users perform to tra
 - User has valid OpenAI API key configured
 
 **Basic Flow**:
-1. User launches LoveFlix application
+1. User launches ActionFlix application
 2. User navigates to Home view (default)
-3. User enters original movie title (e.g., "Terminator")
+3. User enters original movie title (e.g., "The Notebook")
 4. User selects target language (e.g., "English")
 5. User selects text generation model (e.g., "gpt-5.2")
 6. User selects image generation model (e.g., "dall-e-3")
 7. User clicks "Transform" button
 8. System validates input
-9. System sends request to OpenAI for romantic title
-10. System displays progress: "Generating romantic title..." (33%)
-11. System receives romantic title (e.g., "Heart of Steel")
-12. System sends request to OpenAI for romantic summary
-13. System displays progress: "Generating romantic summary..." (66%)
-14. System receives romantic summary
+9. System sends request to OpenAI for action-packed title
+10. System displays progress: "Generating action-packed title..." (33%)
+11. System receives action-packed title (e.g., "Explosive Chronicles")
+12. System sends request to OpenAI for action-packed summary
+13. System displays progress: "Generating action-packed summary..." (66%)
+14. System receives action-packed summary
 15. System sends request to OpenAI for movie poster image
 16. System displays progress: "Generating movie poster..." (99%)
 17. System receives poster image URL
 18. System downloads poster image
-19. System saves collection to `movies/Heart_of_Steel/` folder
+19. System saves collection to `movies/Explosive_Chronicles/` folder
 20. System creates README.md with metadata and content
 21. System saves poster.png
-22. System displays success message with romantic title and summary
+22. System displays success message with action-packed title and summary
 23. System displays generated poster image
 
 **Postconditions**:
 - New collection created in `movies/` folder
-- User can view the romantic version
+- User can view the action-packed version
 - Collection appears in Collections view
 
 **Alternative Flows**:
@@ -122,7 +122,7 @@ LoveFlix scenarios illustrate the end-to-end workflows that users perform to tra
 2. System reads `movies/` folder
 3. System parses each collection's README.md
 4. System displays grid of movie collections with:
-   - Romantic title
+   - Action-packed title
    - Poster image
    - Brief summary preview
    - Delete button
@@ -219,10 +219,10 @@ LoveFlix scenarios illustrate the end-to-end workflows that users perform to tra
 **Actor**: New User
 
 **Preconditions**:
-- User has downloaded and installed LoveFlix
+- User has downloaded and installed ActionFlix
 
 **Basic Flow**:
-1. User launches LoveFlix for first time
+1. User launches ActionFlix for first time
 2. System checks for existing API key in environment variable
 3. No API key found
 4. System displays Home view
@@ -259,15 +259,15 @@ LoveFlix scenarios illustrate the end-to-end workflows that users perform to tra
 
 ### UC-06: View Collection Details
 
-**Description**: User opens a saved collection to view full romantic summary and poster
+**Description**: User opens a saved collection to view full action-packed summary and poster
 
 **Flow**:
 1. User navigates to Collections
 2. User clicks on collection card
 3. System displays full README content with:
    - Original title
-   - Romantic title
-   - Full romantic summary
+   - Action-packed title
+   - Full action-packed summary
    - Large poster image
    - Metadata (language, models used, date)
 
@@ -307,7 +307,7 @@ LoveFlix scenarios illustrate the end-to-end workflows that users perform to tra
 
 ### UC-09: Update Application
 
-**Description**: User installs newer version of LoveFlix
+**Description**: User installs newer version of ActionFlix
 
 **Current Status**: Manual process
 

@@ -1,4 +1,4 @@
-# LoveFlix Desktop App - Assets
+# ActionFlix Desktop App - Assets
 
 Place your app icons here:
 
@@ -19,7 +19,8 @@ npx electron-icon-maker --input=icon.png --output=./
 
 ## Suggested Icon Design
 
-Create a heart-shaped icon with film reel elements in Netflix red/pink gradient colors:
+Create an explosive/action-themed icon with film reel elements in action colors:
 - Primary: #E50914 (Netflix Red)
-- Secondary: #FF6B9D (Romantic Pink)
+- Secondary: #FF6B35 (Explosive Orange)
+- Accent: #FFD700 (Gold for explosions)
 - Background: #141414 (Netflix Black)

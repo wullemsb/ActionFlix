@@ -1,17 +1,17 @@
-# LoveFlix Electron Desktop App
+# ActionFlix Electron Desktop App
 
-A Netflix-styled desktop application that transforms any movie into a hyper-romantic masterpiece! 💕
+A Netflix-styled desktop application that transforms any rom-com into an explosive action blockbuster! 💥
 
 ## Quick Start
 
 ### Easy Launch (Recommended)
 
-**Windows:** Double-click `start-loveflix.bat` in the project root
+**Windows:** Double-click `start-actionflix.bat` in the project root
 
 **macOS/Linux:**
 ```bash
-chmod +x start-loveflix.sh
-./start-loveflix.sh
+chmod +x start-actionflix.sh
+./start-actionflix.sh
 ```
 
 ### Manual Installation
@@ -65,43 +65,43 @@ npm run build:all
 
 ## Features
 
-### 🎬 Transform Any Movie
-Enter any movie title and watch as AI transforms it into a romantic masterpiece with:
-- Romanticized title
-- Romantic plot summary
-- AI-generated romantic movie poster in one of 40+ diverse styles!
+### 🎬 Transform Any Rom-Com
+Enter any rom-com title and watch as AI transforms it into an action-packed blockbuster with:
+- Actionized title
+- Action-packed plot summary
+- AI-generated action movie poster in one of 40+ diverse styles!
 
-### 🎨 40+ Romantic Poster Styles
+### 🎨 40+ Action Poster Styles
 Each poster is randomly styled from our extensive collection, ensuring variety and uniqueness:
 
-**☀️ Sunset & Warm Tones:**
-- Golden Hour Passion, Amber Dream, Sunrise Promise
+**💥 Explosions & Fire:**
+- Inferno Blast, Pyroclastic Fury, Hellfire Strike
 
-**🌊 Water & Ocean Themes:**
-- Ocean Romance, Moonlit Waves, Tropical Paradise, Underwater Love
+**🔫 Military & Tactical:**
+- Black Ops Mission, Desert Warfare, Navy SEAL Assault, Special Forces
 
-**🌸 Nature & Garden Settings:**
-- Cherry Blossom Dreams, Enchanted Garden, Autumn Embrace, Lavender Fields, Wildflower Meadow
+**🏙️ Urban Action:**
+- Street Chase, Rooftop Showdown, Urban Warfare, Alley Combat, High-Rise Assault
 
-**❄️ Winter & Cold Weather:**
-- Winter Wonderland Love, Northern Lights Romance, Fireside Glow, Ice Palace Dreams
+**🕵️ Spy & Thriller:**
+- Covert Operation, Espionage Noir, Shadow Protocol, Classified Intel
 
 **🌃 Urban & Modern:**
-- City Lights Romance, Rain-Kissed Love, Art Deco Elegance, Neon Dreams
+- Neon Gunfight, Rain-Soaked Battle, Cyber Warfare, Dark City Strike
 
 **📜 Classic & Vintage:**
-- Vintage Romance, Victorian Dreams, French Riviera, Retro Drive-In
+- Vintage War Hero, Cold War Espionage, Retro Action, Classic Standoff
 
 **✨ Night & Celestial:**
-- Starlight Love, Milky Way Magic, Midnight Garden
+- Midnight Raid, Starlight Assault, Lunar Operation
 
 **🏰 Fantasy & Magical:**
-- Fairytale Castle, Ethereal Mist, Crystal Ballroom, Enchanted Forest
+- Dragon Battle, Medieval Siege, Mythic Warrior, Enchanted Combat
 
 **🎭 Dramatic & Artistic:**
-- Film Noir Romance, Renaissance Love, Watercolor Dreams, Gothic Romance
+- Film Noir Assassin, Epic Showdown, Silhouette Strike, Dark Vigilante
 
-Each style includes unique color palettes, lighting, mood, and composition instructions to create visually stunning and diverse romantic posters!
+Each style includes unique color palettes, lighting, mood, and composition instructions to create visually stunning and diverse action posters!
 
 ### 📺 Live Top 10 from TMDB
 Real-time popular movies and TV shows fetched from The Movie Database (TMDB) API based on your selected country:
@@ -109,7 +109,7 @@ Real-time popular movies and TV shows fetched from The Movie Database (TMDB) API
 - **Popular TV Shows** - Top series in your country
 - **Action Movies** - Popular action films
 - **Sci-Fi Movies** - Trending science fiction
-- One-click romanticization or use **"Romanticize All 10"** to transform an entire category!
+- One-click actionization or use **"Actionize All 10"** to transform an entire category!
 
 ### 🌍 Country Selection
 Choose your country in Settings to see region-specific Top 10 content. Default is Belgium, with support for:
@@ -117,12 +117,12 @@ Choose your country in Settings to see region-specific Top 10 content. Default i
 - Spain, Italy, Portugal, Japan, South Korea, China
 - Canada, Australia, India, Brazil, Mexico, and more!
 
-### 💕 Romanticize All 10
-Each Top 10 category (Movies, TV Shows, Action, Sci-Fi) has a dedicated "Romanticize All 10" button that:
-- Transforms all 10 movies/shows in the category sequentially
-- Generates romantic titles, summaries, and posters for each
+### 💥 Actionize All 10
+Each Top 10 category (Movies, TV Shows, Action, Sci-Fi) has a dedicated "Actionize All 10" button that:
+- Transforms all 10 rom-coms/shows in the category sequentially
+- Generates action-packed titles, summaries, and posters for each
 - Automatically saves them to your collection
-- Renames the genre to a romantic version (e.g., "Action Movies" → "Action Romance")
+- Renames the genre to an action version (e.g., "Romantic Comedy" → "Pure Action")
 - Displays them in a special Top 10 card layout in your collection
 
 ### 💾 Personal Collection (Netflix-Style)
@@ -133,20 +133,20 @@ Your collection now features a beautiful Netflix-inspired layout:
 - Full-screen poster backdrop with gradient overlay
 - Quick access buttons to watch on Netflix or view details
 
-**📺 Romantic Top 10 Collections**
+**📺 Action Top 10 Collections**
 - Complete transformed categories with Netflix-style ranking display
 - Horizontal scrolling rows with rank numbers
 
-**📁 Smart Romantic Categories**
-Individual movies are automatically organized into romantic subcategories:
-- 🔥 **Passionate Dramas** - Intense emotional stories
-- ⭐ **Star-Crossed Lovers** - Forbidden love and tragic romance
-- 💪 **Action Romance** - Adventure meets love
-- ✨ **Fantasy & Enchanted Love** - Magical romantic tales
-- 🚀 **Sci-Fi Romance** - Love across space and time
-- 🌙 **Gothic & Dark Romance** - Mysterious and atmospheric
-- 😊 **Lighthearted Romance** - Fun and charming stories
-- 💕 **Classic Love Stories** - Timeless romantic tales
+**📁 Smart Action Categories**
+Individual movies are automatically organized into action subcategories:
+- 🔥 **High-Octane Thrillers** - Intense explosive stories
+- ⭐ **Rival Warriors** - Epic battles and showdowns
+- 💪 **Pure Action** - Nonstop adrenaline and combat
+- ✨ **Fantasy Action Epics** - Magical action-packed tales
+- 🚀 **Sci-Fi Warfare** - Combat across space and time
+- 🌙 **Dark Action & Noir** - Mysterious and gritty
+- 😊 **Adrenaline Rush** - Fast-paced and explosive
+- 💥 **Classic Action Films** - Timeless action masterpieces
 - 🆕 **Recently Added** - Your newest additions
 
 Movies can appear in multiple categories based on their themes!
@@ -167,7 +167,7 @@ Choose from multiple OpenAI models:
 - GPT-5 Nano (Fastest)
 
 ### 🌍 Multi-Language Support
-Generate romantic content in:
+Generate action-packed content in:
 - English, Dutch, French, Spanish, German
 - Italian, Portuguese, Japanese, Korean, Chinese
 
@@ -228,7 +228,7 @@ electron-app/
 ## Tech Stack
 
 - **Electron** - Cross-platform desktop framework
-- **OpenAI API** - AI-powered text & image generation
+- **OpenAI API** - AI-powered action text & image generation
 - **electron-store** - Persistent settings storage
 - **electron-builder** - Packaging & distribution
 

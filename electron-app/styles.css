@@ -1,5 +1,5 @@
 /* ========================================
-   LoveFlix - Netflix-Style CSS
+   ActionFlix - Netflix-Style CSS
    ======================================== */
 
 :root {
@@ -13,10 +13,10 @@
   --text-muted: #757575;
   --accent-red: #e50914;
   --accent-red-hover: #f40612;
-  --accent-pink: #ff6b9d;
-  --accent-pink-dark: #e91e63;
-  --accent-gradient: linear-gradient(135deg, #e50914 0%, #ff6b9d 100%);
-  --romantic-gradient: linear-gradient(135deg, #ff6b9d 0%, #c44569 50%, #e50914 100%);
+  --accent-orange: #ff6b35;
+  --accent-orange-dark: #ff4500;
+  --accent-gradient: linear-gradient(135deg, #e50914 0%, #ff6b35 100%);
+  --action-gradient: linear-gradient(135deg, #ff6b35 0%, #ff4500 50%, #e50914 100%);
   --border-color: #333333;
   --shadow-color: rgba(0, 0, 0, 0.5);
   
@@ -202,13 +202,13 @@ body {
 }
 
 .quick-language-select:hover {
-  border-color: var(--accent-pink);
+  border-color: var(--accent-orange);
   background: var(--bg-card);
 }
 
 .quick-language-select:focus {
   outline: none;
-  border-color: var(--accent-pink);
+  border-color: var(--accent-orange);
 }
 
 .quick-language-select option {
@@ -307,7 +307,7 @@ body {
 }
 
 .hero-title .highlight {
-  background: var(--romantic-gradient);
+  background: var(--action-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -355,8 +355,8 @@ body {
   box-shadow: 0 15px 30px var(--shadow-color);
 }
 
-.poster-placeholder.romantic {
-  background: var(--romantic-gradient);
+.poster-placeholder.action {
+  background: var(--action-gradient);
 }
 
 .poster-arrow {
@@ -455,8 +455,8 @@ body {
 }
 
 .btn-primary:hover {
-  transform: scale(1.02);
-  box-shadow: 0 5px 20px rgba(229, 9, 20, 0.4);
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(255, 107, 53, 0.8), 0 0 20px rgba(229, 9, 20, 0.6);
 }
 
 .btn-primary:disabled {
@@ -544,8 +544,8 @@ body {
 
 .movie-input:focus {
   outline: none;
-  border-color: var(--accent-pink);
-  box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.2);
+  border-color: var(--accent-orange);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.2);
 }
 
 .movie-input::placeholder {
@@ -614,10 +614,10 @@ body {
   margin-bottom: var(--spacing-md);
 }
 
-.romantic-title {
+.action-title {
   font-size: 36px;
   font-weight: 700;
-  background: var(--romantic-gradient);
+  background: var(--action-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -625,7 +625,7 @@ body {
   line-height: 1.2;
 }
 
-.romantic-summary {
+.action-summary {
   color: var(--text-secondary);
   font-size: 16px;
   line-height: 1.8;
@@ -995,11 +995,11 @@ body {
   padding: var(--spacing-md);
 }
 
-.collection-romantic-title {
+.collection-action-title {
   font-size: 14px;
   font-weight: 600;
   margin-bottom: var(--spacing-xs);
-  color: var(--accent-pink);
+  color: var(--accent-orange);
 }
 
 .collection-original {
@@ -1019,21 +1019,21 @@ body {
 }
 
 /* ========================================
-   Romantic Top 10 Collections
+   Action Top 10 Collections
    ======================================== */
 
-.romantic-top10-container {
+.action-top10-container {
   margin-bottom: var(--spacing-xxl);
   padding: 0 var(--spacing-md);
 }
 
-/* Romantic badge with gradient */
-.top10-badge.romantic-badge {
-  background: linear-gradient(135deg, #e50914, #ff6b9d);
+/* Action badge with gradient */
+.top10-badge.action-badge {
+  background: linear-gradient(135deg, #e50914, #ff6b35);
 }
 
-.romantic-genre-name {
-  color: var(--accent-pink);
+.action-genre-name {
+  color: var(--accent-orange);
 }
 
 .btn-delete-top10-collection {
@@ -1167,6 +1167,16 @@ body {
     rgba(20, 20, 20, 1) 0%,
     rgba(20, 20, 20, 0.8) 15%,
     transparent 40%
+  ),
+  radial-gradient(
+    circle at 80% 20%,
+    rgba(255, 107, 53, 0.15) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    circle at 30% 80%,
+    rgba(229, 9, 20, 0.1) 0%,
+    transparent 40%
   );
 }
 
@@ -1183,7 +1193,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  background: var(--romantic-gradient);
+  background: var(--action-gradient);
   padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--radius-sm);
   font-size: 12px;
@@ -1414,7 +1424,7 @@ body {
 }
 
 .category-scroll-btn:hover {
-  color: var(--accent-pink);
+  color: var(--accent-orange);
 }
 
 /* Category Movie Card */
@@ -1482,7 +1492,7 @@ body {
 .card-title {
   font-size: 13px;
   font-weight: 600;
-  color: var(--accent-pink);
+  color: var(--accent-orange);
   margin-bottom: 2px;
   white-space: nowrap;
   overflow: hidden;
@@ -1792,8 +1802,8 @@ body {
 .settings-input-compact:focus,
 .settings-select-compact:focus {
   outline: none;
-  border-color: var(--accent-pink);
-  background: rgba(255, 107, 157, 0.05);
+  border-color: var(--accent-orange);
+  background: rgba(255, 107, 53, 0.05);
 }
 
 .settings-select-compact {
@@ -1835,7 +1845,7 @@ body {
 
 .btn-secondary-compact:hover {
   background: var(--bg-hover);
-  border-color: var(--accent-pink);
+  border-color: var(--accent-orange);
 }
 
 .env-key-notice {
@@ -1882,7 +1892,7 @@ body {
 .settings-input:focus,
 .settings-select:focus {
   outline: none;
-  border-color: var(--accent-pink);
+  border-color: var(--accent-orange);
 }
 
 .settings-select {
@@ -2032,7 +2042,7 @@ body {
   font-size: 48px;
   font-weight: 700;
   line-height: 1.1;
-  background: var(--romantic-gradient);
+  background: var(--action-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2232,10 +2242,10 @@ body {
 }
 
 /* ========================================
-   Romanticize All Progress Modal
+   Actionize All Progress Modal
    ======================================== */
 
-.romanticize-all-modal {
+.actionize-all-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -2266,11 +2276,11 @@ body {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
 }
 
-.romanticize-all-header h3 {
+.actionize-all-header h3 {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: var(--spacing-lg);
-  background: var(--romantic-gradient);
+  background: var(--action-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2289,9 +2299,9 @@ body {
   margin-bottom: var(--spacing-sm);
 }
 
-.romanticize-all-progress-fill {
+.actionize-all-progress-fill {
   height: 100%;
-  background: var(--romantic-gradient);
+  background: var(--action-gradient);
   transition: width 0.5s ease;
   border-radius: var(--radius-md);
 }
@@ -2302,10 +2312,10 @@ body {
   text-align: center;
 }
 
-.romanticize-all-current {
+.actionize-all-current {
   padding: var(--spacing-md);
-  background: rgba(255, 107, 157, 0.1);
-  border-left: 3px solid var(--accent-pink);
+  background: rgba(255, 107, 53, 0.1);
+  border-left: 3px solid var(--accent-orange);
   border-radius: var(--radius-sm);
   margin-bottom: var(--spacing-lg);
 }
@@ -2320,9 +2330,9 @@ body {
   text-overflow: ellipsis;
 }
 
-.romanticize-all-current-step {
+.actionize-all-current-step {
   font-size: 14px;
-  color: var(--accent-pink);
+  color: var(--accent-orange);
 }
 
 .romanticize-all-movies-list {
@@ -2344,9 +2354,9 @@ body {
   transition: all var(--transition-fast);
 }
 
-.romanticize-all-movie-item.processing {
-  background: rgba(255, 107, 157, 0.15);
-  border-left: 3px solid var(--accent-pink);
+.actionize-all-movie-item.processing {
+  background: rgba(255, 107, 53, 0.15);
+  border-left: 3px solid var(--accent-orange);
 }
 
 .romanticize-all-movie-item.completed {
@@ -2374,8 +2384,8 @@ body {
   text-overflow: ellipsis;
 }
 
-.romanticize-all-movie-item.processing .movie-title,
-.romanticize-all-movie-item.completed .movie-title {
+.actionize-all-movie-item.processing .movie-title,
+.actionize-all-movie-item.completed .movie-title {
   color: var(--text-primary);
   font-weight: 500;
 }
@@ -2492,7 +2502,7 @@ body {
 
 .progress-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent-red), #ff4458);
+  background: linear-gradient(90deg, var(--accent-red), #ff6b35);
   border-radius: var(--radius-sm);
   width: 0;
   transition: width 0.6s ease;
@@ -2673,7 +2683,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   background: var(--bg-card);
-  border: 2px solid var(--accent-pink);
+  border: 2px solid var(--accent-orange);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   max-width: 500px;
@@ -2711,7 +2721,7 @@ body {
 
 .update-note {
   font-size: 13px;
-  color: var(--accent-pink);
+  color: var(--accent-orange);
   font-style: italic;
 }
 
@@ -2851,7 +2861,7 @@ body {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 42px;
   font-weight: 700;
-  background: var(--romantic-gradient);
+  background: var(--action-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -2884,7 +2894,7 @@ body {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: var(--spacing-md);
-  color: var(--accent-pink);
+  color: var(--accent-orange);
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
@@ -2913,7 +2923,7 @@ body {
   font-size: 18px;
   font-style: italic;
   line-height: 1.6;
-  color: var(--accent-pink);
+  color: var(--accent-orange);
   margin-bottom: var(--spacing-md);
   padding-left: var(--spacing-md);
   border-left: 3px solid var(--accent-red);
@@ -3008,7 +3018,7 @@ body {
 .about-link:hover {
   background: rgba(229, 9, 20, 0.1);
   border-color: var(--accent-red);
-  color: var(--accent-pink);
+  color: var(--accent-orange);
   transform: translateX(4px);
 }
 
@@ -3033,7 +3043,7 @@ body {
   padding: var(--spacing-md);
   background: rgba(255, 255, 255, 0.02);
   border-radius: var(--radius-md);
-  border-left: 3px solid var(--accent-pink-dark);
+  border-left: 3px solid var(--accent-orange-dark);
 }
 
 .about-version {
@@ -3054,7 +3064,7 @@ body {
 }
 
 #aboutVersion {
-  color: var(--accent-pink);
+  color: var(--accent-orange);
   font-weight: 600;
 }
 

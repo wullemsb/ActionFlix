@@ -1,9 +1,9 @@
 #!/bin/bash
-# LoveFlix Desktop App - macOS/Linux Startup Script
+# ActionFlix Desktop App - macOS/Linux Startup Script
 # ==================================================
 
 echo ""
-echo "  💕 LoveFlix - Transform Any Movie Into Romance! 💕"
+echo "  💥 ActionFlix - Transform Rom-Coms Into Action! 💥"
 echo "  =================================================="
 echo ""
 
@@ -34,7 +34,7 @@ if [ ! -d "node_modules" ]; then
     echo ""
 fi
 
-echo "  🚀 Starting LoveFlix..."
+echo "  🚀 Starting ActionFlix..."
 echo ""
 
 # Start the app
@@ -42,6 +42,6 @@ npm start
 
 if [ $? -ne 0 ]; then
     echo ""
-    echo "  ❌ Failed to start LoveFlix!"
+    echo "  ❌ Failed to start ActionFlix!"
     exit 1
 fi
