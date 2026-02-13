@@ -47,16 +47,34 @@ ActionFlix is now available as a **Netflix-styled desktop application** for Wind
 
 ### API Keys Required
 
-1. **OpenAI API Key** (Required for movie transformation)
-   - Get it from: https://platform.openai.com/api-keys
-   - Used for: Generating action-packed titles, summaries, and posters
+ActionFlix supports multiple AI providers:
 
-2. **TMDB API Key** (Required for Top 10 feature)
-   - Get it from: https://www.themoviedb.org/settings/api
-   - Free registration required
-   - Used for: Fetching popular movies and TV shows by country
+#### Option 1: OpenAI (Default)
+- **OpenAI API Key** (Required)
+  - Get it from: https://platform.openai.com/api-keys
+  - Used for: Generating action-packed titles, summaries, and posters
+  - Supports: DALL-E 2/3, GPT Image models, GPT-5.2/Mini/Nano
 
-Add both API keys in the app's Settings menu.
+#### Option 2: Azure OpenAI
+- **Azure OpenAI Endpoint** and **API Key** (Required)
+  - Get it from: Azure Portal
+  - Configure deployment names for your text and image models
+  - Supports: Same models as OpenAI but deployed in your Azure subscription
+
+#### Option 3: Ollama (Local)
+- **Ollama** (Required - free and open source)
+  - Install from: https://ollama.ai
+  - Run locally on your machine
+  - Configure base URL (default: http://localhost:11434)
+  - Supports text generation with local models (llama2, mistral, etc.)
+  - ⚠️ Note: Image generation requires OpenAI or Azure OpenAI
+
+#### TMDB API Key (Optional - for Top 10 feature)
+- Get it from: https://www.themoviedb.org/settings/api
+- Free registration required
+- Used for: Fetching popular movies and TV shows by country
+
+Add your API keys and configure your preferred provider in the app's Settings menu.
 
 ### Quick Start (Desktop)
 

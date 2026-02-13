@@ -18,24 +18,49 @@ chmod +x start-actionflix.sh
 
 #### Prerequisites
 - Node.js 18+ installed
-- OpenAI API key (for movie transformation)
-- TMDB API key (for Top 10 feature)
+- AI Provider (choose one):
+  - OpenAI API key, OR
+  - Azure OpenAI endpoint and key, OR
+  - Ollama running locally
+- TMDB API key (optional, for Top 10 feature)
 
 #### Getting API Keys
 
-1. **OpenAI API Key**
-   - Visit: https://platform.openai.com/api-keys
-   - Create an account or sign in
-   - Generate a new API key
-   - Copy and save it securely
+**Option 1: OpenAI (Default)**
+1. Visit: https://platform.openai.com/api-keys
+2. Create an account or sign in
+3. Generate a new API key
+4. Copy and save it securely
+5. Add it in the app's Settings menu
 
-2. **TMDB API Key** (Required for Top 10 feature)
-   - Visit: https://www.themoviedb.org/signup
-   - Create a free account
-   - Go to: https://www.themoviedb.org/settings/api
-   - Request an API key (choose "Developer" option)
-   - Accept the terms and provide basic information
-   - Copy your API key
+**Option 2: Azure OpenAI**
+1. Create an Azure OpenAI resource in Azure Portal
+2. Deploy text and image models (e.g., GPT-4, DALL-E-3)
+3. Copy your endpoint URL and API key from "Keys and Endpoint"
+4. Note your deployment names
+5. Configure all settings in the app's Settings menu:
+   - Azure Endpoint (e.g., https://your-resource.openai.azure.com)
+   - Azure API Key
+   - API Version (default: 2024-02-15-preview)
+   - Text Deployment Name
+   - Image Deployment Name
+
+**Option 3: Ollama (Local - Free)**
+1. Install Ollama from: https://ollama.ai
+2. Start Ollama service
+3. Pull a model: `ollama pull llama2` (or mistral, codellama, etc.)
+4. Configure in Settings:
+   - Base URL (default: http://localhost:11434)
+   - Text Model Name (e.g., llama2, mistral)
+   - ⚠️ Note: Image generation requires OpenAI or Azure OpenAI
+
+**TMDB API Key (Optional - for Top 10 feature)**
+1. Visit: https://www.themoviedb.org/signup
+2. Create a free account
+3. Go to: https://www.themoviedb.org/settings/api
+4. Request an API key (choose "Developer" option)
+5. Accept the terms and provide basic information
+6. Copy your API key and add it in Settings
 
 #### Steps
 

@@ -22,6 +22,7 @@ contextBridge.exposeInMainWorld('api', {
   // Settings
   getSettings: () => ipcRenderer.invoke('get-settings'),
   saveSettings: (settings) => ipcRenderer.invoke('save-settings', settings),
+  testTmdbKey: (apiKey) => ipcRenderer.invoke('test-tmdb-key', apiKey),
   
   // Movies
   getSavedMovies: () => ipcRenderer.invoke('get-saved-movies'),

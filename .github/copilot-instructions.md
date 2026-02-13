@@ -48,33 +48,45 @@ ActionFlix/
 - Keep the Netflix-inspired dark theme aesthetic
 - Use CSS variables defined in `:root` for colors
 
-### API Key Handling
+### AI Provider Support
 
-The app supports two API keys:
+The app now supports multiple AI providers:
 
-1. **OpenAI API Key** (for movie transformation):
+1. **OpenAI** (default):
    - Environment variable: `OPENAI_API_KEY` (checked first)
    - Settings stored via electron-store (fallback)
+   - Supports all OpenAI models
 
-2. **TMDB API Key** (for Top 10 feature):
+2. **Azure OpenAI**:
+   - Requires endpoint URL, API key, and deployment names
+   - All settings stored via electron-store
+   - Uses OpenAI SDK with Azure-specific configuration
+
+3. **Ollama** (local):
+   - Requires Ollama running locally (default: http://localhost:11434)
+   - Configure base URL and model names
+   - Text generation only (image generation requires OpenAI/Azure)
+
+4. **TMDB API Key** (optional, for Top 10 feature):
    - Settings stored via electron-store only
    - Required for fetching real-time popular movies/shows by country
 
-When modifying API key logic, always support both methods for OpenAI.
+When modifying AI provider logic, ensure all three providers work correctly.
 
 ### Supported AI Models
 
-**Image Generation:**
+**Image Generation (OpenAI/Azure only):**
 - `dall-e-3` (default, best quality)
 - `dall-e-2` (faster)
 - `gpt-image-1.5` (latest)
 - `gpt-image-1`
 - `gpt-image-1-mini` (fastest)
 
-**Text Generation:**
+**Text Generation (all providers):**
 - `gpt-5.2` (latest & best, default)
 - `gpt-5-mini` (fast)
 - `gpt-5-nano` (fastest)
+- For Ollama: any installed model (llama2, mistral, etc.)
 
 ### Build Commands
 
