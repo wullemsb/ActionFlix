@@ -76,6 +76,8 @@ ActionFlix supports multiple AI providers:
 
 Add your API keys and configure your preferred provider in the app's Settings menu.
 
+📘 **[Complete AI Provider Setup Guide →](docs/AI_PROVIDER_SETUP.md)**
+
 ### Quick Start (Desktop)
 
 **Windows:** Double-click `start-actionflix.bat`
