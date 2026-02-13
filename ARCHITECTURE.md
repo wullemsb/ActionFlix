@@ -1,4 +1,4 @@
-# LoveFlix Release & Update Architecture
+# ActionFlix Release & Update Architecture
 
 ## Release Process Flow
 
@@ -51,7 +51,7 @@ Run: .\release.ps1 -Version "1.1.0" -CreateGitHubRelease
 ```
 End User's Computer
     ↓
-LoveFlix App Launches
+ActionFlix App Launches
     ↓
 Wait 3 seconds (UI loads)
     ↓
@@ -110,11 +110,11 @@ Using App     │ Show Popup   │   (Continue)
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                     GitHub Repository                        │
-│  https://github.com/janvanwassenhove/LoveFlix               │
+│  https://github.com/wullemsb/ActionFlix                     │
 │                                                              │
 │  Releases:                                                   │
-│  • v1.0.0 (LoveFlix Setup 1.0.0.exe, .dmg files)           │
-│  • v1.1.0 (LoveFlix Setup 1.1.0.exe, .dmg files)           │
+│  • v1.0.0 (ActionFlix Setup 1.0.0.exe, .dmg files)         │
+│  • v1.1.0 (ActionFlix Setup 1.1.0.exe, .dmg files)         │
 │  • v1.2.0 (Latest)                                          │
 └─────────────────────────────────────────────────────────────┘
                            ↑
@@ -125,7 +125,7 @@ Using App     │ Show Popup   │   (Continue)
 │                    User's Computer                           │
 │                                                              │
 │  ┌────────────────────────────────────────────────┐         │
-│  │           LoveFlix Application                 │         │
+│  │           ActionFlix Application               │         │
 │  │                                                │         │
 │  │  ┌──────────────────────────────────────────┐ │         │
 │  │  │  Main Process (main.js)                  │ │         │
@@ -144,8 +144,8 @@ Using App     │ Show Popup   │   (Continue)
 │                                                              │
 │  ┌────────────────────────────────────────────────┐         │
 │  │         User Data (Persistent)                 │         │
-│  │  Windows: %APPDATA%\loveflix\                 │         │
-│  │  macOS: ~/Library/Application Support/loveflix/│         │
+│  │  Windows: %APPDATA%\actionflix\                │         │
+│  │  macOS: ~/Library/Application Support/actionflix/│         │
 │  │                                                │         │
 │  │  • config.json (API keys, settings)           │         │
 │  │  • movies.json (saved collections)            │         │
@@ -217,7 +217,7 @@ Using App     │ Show Popup   │   (Continue)
 ## File Structure
 
 ```
-LoveFlix/
+ActionFlix/
 │
 ├── release.ps1                    # 🚀 Release automation script
 │
@@ -255,9 +255,9 @@ LoveFlix/
 │       └── entitlements.mac.plist # 🍎 macOS permissions
 │
 └── dist/                         # 📦 Build outputs (gitignored)
-    ├── LoveFlix Setup 1.0.0.exe
-    ├── LoveFlix-1.0.0.dmg
-    └── LoveFlix-1.0.0-arm64.dmg
+    ├── ActionFlix Setup 1.0.0.exe
+    ├── ActionFlix-1.0.0.dmg
+    └── ActionFlix-1.0.0-arm64.dmg
 ```
 
 ---

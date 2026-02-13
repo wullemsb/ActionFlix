@@ -1,9 +1,9 @@
 @echo off
-REM LoveFlix Desktop App - Windows Startup Script
+REM ActionFlix Desktop App - Windows Startup Script
 REM ==============================================
 
 echo.
-echo  💕 LoveFlix - Transform Any Movie Into Romance! 💕
+echo  💥 ActionFlix - Transform Rom-Coms Into Action! 💥
 echo  ==================================================
 echo.
 
@@ -33,7 +33,7 @@ if not exist "node_modules" (
     echo.
 )
 
-echo  🚀 Starting LoveFlix...
+echo  🚀 Starting ActionFlix...
 echo.
 
 REM Start the app
@@ -41,7 +41,7 @@ call npm start
 
 if %ERRORLEVEL% NEQ 0 (
     echo.
-    echo  ❌ Failed to start LoveFlix!
+    echo  ❌ Failed to start ActionFlix!
     pause
     exit /b 1
 )
