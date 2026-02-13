@@ -1,4 +1,4 @@
-# 🎉 LoveFlix Release System - Complete!
+# 🎉 ActionFlix Release System - Complete!
 
 ## ✅ What Was Created
 
@@ -63,14 +63,14 @@ This will:
 **Note**: Builds for current platform only. For multi-platform releases, build on each platform separately.
 
 ### Step 3: Verify
-Check: https://github.com/janvanwassenhove/LoveFlix/releases
+Check: https://github.com/wullemsb/ActionFlix/releases
 
 ---
 
 ## 🔄 How Auto-Update Works
 
 ### For Users:
-1. Install LoveFlix using the installer
+1. Install ActionFlix using the installer
 2. App checks for updates automatically on startup
 3. When new version available → Notification appears
 4. Click "Download Update" → Watch progress bar
@@ -97,8 +97,8 @@ Check: https://github.com/janvanwassenhove/LoveFlix/releases
 - ✅ App settings (language, models, etc.)
 
 ### Storage Location:
-- **Windows**: `%APPDATA%\loveflix\`
-- **macOS**: `~/Library/Application Support/loveflix/`
+- **Windows**: `%APPDATA%\actionflix\`
+- **macOS**: `~/Library/Application Support/actionflix/`
 
 These directories are **outside** the app folder, so updates never touch them.
 

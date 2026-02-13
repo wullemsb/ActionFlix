@@ -1,6 +1,6 @@
-# LoveFlix Release Guide
+# ActionFlix Release Guide
 
-This guide explains how to create and distribute new releases of LoveFlix using the automated release script.
+This guide explains how to create and distribute new releases of ActionFlix using the automated release script.
 
 ## Prerequisites
 
@@ -90,17 +90,17 @@ electron-app/dist/
 ```
 
 ### Windows Installers
-- `LoveFlix Setup {version}.exe` - NSIS installer with auto-update support
+- `ActionFlix Setup {version}.exe` - NSIS installer with auto-update support
 
 ### macOS Installers
-- `LoveFlix-{version}.dmg` - Intel Mac installer
-- `LoveFlix-{version}-arm64.dmg` - Apple Silicon (M1/M2/M3) installer
+- `ActionFlix-{version}.dmg` - Intel Mac installer
+- `ActionFlix-{version}-arm64.dmg` - Apple Silicon (M1/M2/M3) installer
 
 ## Auto-Update Feature
 
 ### How It Works
 
-LoveFlix includes automatic update functionality powered by `electron-updater`:
+ActionFlix includes automatic update functionality powered by `electron-updater`:
 
 1. **Update Check**: App checks for updates 3 seconds after launch
 2. **Notification**: Users see an in-app notification when updates are available
@@ -115,9 +115,9 @@ LoveFlix includes automatic update functionality powered by `electron-updater`:
 
 User data is stored in Electron's `userData` directory, which persists across updates:
 
-- **Windows**: `%APPDATA%\loveflix\`
-- **macOS**: `~/Library/Application Support/loveflix/`
-- **Linux**: `~/.config/loveflix/`
+- **Windows**: `%APPDATA%\actionflix\`
+- **macOS**: `~/Library/Application Support/actionflix/`
+- **Linux**: `~/.config/actionflix/`
 
 ### Update Channels
 
@@ -202,7 +202,7 @@ git commit -m "Prepare for release"
 ### GitHub Release Creation Failed
 
 **Solution**: You can manually create the release:
-1. Go to: `https://github.com/janvanwassenhove/LoveFlix/releases/new?tag=v{version}`
+1. Go to: `https://github.com/wullemsb/ActionFlix/releases/new?tag=v{version}`
 2. Upload installers from `electron-app/dist/`
 3. Add release notes
 
@@ -273,7 +273,7 @@ git push origin v1.1.0
 
 ### 4. Create GitHub Release
 
-1. Go to: https://github.com/janvanwassenhove/LoveFlix/releases/new
+1. Go to: https://github.com/wullemsb/ActionFlix/releases/new
 2. Select the tag
 3. Upload installers from `electron-app/dist/`
 4. Write release notes
@@ -282,8 +282,8 @@ git push origin v1.1.0
 ## Support
 
 For issues or questions:
-- **GitHub Issues**: https://github.com/janvanwassenhove/LoveFlix/issues
-- **Discussions**: https://github.com/janvanwassenhove/LoveFlix/discussions
+- **GitHub Issues**: https://github.com/wullemsb/ActionFlix/issues
+- **Discussions**: https://github.com/wullemsb/ActionFlix/discussions
 
 ---
 
