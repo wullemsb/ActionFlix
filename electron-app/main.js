@@ -50,9 +50,9 @@ const BRAND_FRANCHISE_NAMES = [
  * Creates a safer prompt for image generation by removing brand names
  * and making the description more generic/original
  */
-function createSaferImagePrompt(originalTitle, romanticTitle, genre, originalSummary) {
+function createSaferImagePrompt(originalTitle, actionTitle, genre, originalSummary) {
   // Remove brand/franchise names from title
-  let safeTitle = romanticTitle || originalTitle || 'Untitled Romance';
+  let safeTitle = actionTitle || originalTitle || 'Untitled Action';
   let safeOriginalTitle = originalTitle || '';
   
   // Remove brand names (case insensitive)
@@ -68,7 +68,7 @@ function createSaferImagePrompt(originalTitle, romanticTitle, genre, originalSum
   
   // If title is now empty or too short, use generic title
   if (!safeTitle || safeTitle.length < 3) {
-    safeTitle = 'Eternal Hearts';
+    safeTitle = 'Maximum Fury';
   }
   
   // Convert genre to a safe, generic description
@@ -76,46 +76,46 @@ function createSaferImagePrompt(originalTitle, romanticTitle, genre, originalSum
   let themeDescription = '';
   
   if (genreLower.includes('sci-fi') || genreLower.includes('science')) {
-    themeDescription = 'a futuristic setting with advanced technology and cosmic elements';
+    themeDescription = 'a futuristic setting with advanced technology and explosive space battles';
   } else if (genreLower.includes('horror') || genreLower.includes('thriller')) {
-    themeDescription = 'a mysterious gothic atmosphere with dramatic lighting';
-  } else if (genreLower.includes('action') || genreLower.includes('adventure')) {
-    themeDescription = 'an adventurous backdrop with dynamic energy';
+    themeDescription = 'a dark tense atmosphere with dangerous action and combat';
+  } else if (genreLower.includes('romance') || genreLower.includes('comedy')) {
+    themeDescription = 'an intense battlefield with explosions and military operations';
   } else if (genreLower.includes('fantasy')) {
-    themeDescription = 'a magical, enchanted world with mystical elements';
+    themeDescription = 'an epic battlefield with swords, warriors, and mystical combat';
   } else if (genreLower.includes('animation') || genreLower.includes('family')) {
-    themeDescription = 'a colorful, whimsical animated world';
+    themeDescription = 'an adventurous world with high-energy action and excitement';
   } else if (genreLower.includes('war') || genreLower.includes('history')) {
-    themeDescription = 'a historical setting with period-appropriate details';
-  } else if (genreLower.includes('comedy')) {
-    themeDescription = 'a lighthearted, joyful atmosphere';
+    themeDescription = 'a historical battlefield with period warfare and combat';
+  } else if (genreLower.includes('drama')) {
+    themeDescription = 'an intense action-packed setting with high stakes';
   } else {
-    themeDescription = 'a cinematic, dramatic setting';
+    themeDescription = 'a cinematic action-packed setting with explosions';
   }
   
   // Build a completely original prompt that doesn't reference any existing movie
-  const saferPrompt = `Create an ORIGINAL romantic movie poster concept (not based on any existing film or franchise).
+  const saferPrompt = `Create an ORIGINAL action movie poster concept (not based on any existing film or franchise).
 
 POSTER TITLE: "${safeTitle}"
 
 SCENE DESCRIPTION:
-A beautiful romantic couple in ${themeDescription}. The couple is shown in a tasteful, loving embrace or tender moment together.
+An explosive action hero in ${themeDescription}. Show intense combat, dramatic explosions, or high-stakes confrontation.
 
 ARTISTIC STYLE:
 - Professional Hollywood/Netflix movie poster quality
 - Photorealistic, high-end cinematographic look
-- Beautiful warm lighting with sunset/golden hour tones
-- Color palette: pink, rose gold, purple, warm orange
-- Dreamy soft-focus background with bokeh effects
+- Dramatic lighting with fire, explosions, or intense highlights
+- Color palette: orange fire, red explosions, steel blue, dark shadows
+- Dynamic action composition with depth
 - 8K detail quality
-- Family-friendly, elegant composition
+- Intense, dramatic composition
 
 TYPOGRAPHY:
 - Display the title "${safeTitle}" prominently
-- Use elegant, romantic script or serif font
-- Add subtle glow or metallic effect to the title text
+- Use bold, aggressive military-style or impact font
+- Add metallic effect or explosive glow to the title text
 
-IMPORTANT: This is an ORIGINAL creative concept, not a recreation or parody of any existing film. Create something unique and beautiful.`;
+IMPORTANT: This is an ORIGINAL creative concept, not a recreation or parody of any existing film. Create something unique and explosive.`;
 
   return saferPrompt;
 }
@@ -123,19 +123,19 @@ IMPORTANT: This is an ORIGINAL creative concept, not a recreation or parody of a
 /**
  * Creates an ultra-safe fallback prompt with minimal specific details
  */
-function createUltraSafeImagePrompt(romanticTitle = 'Eternal Love') {
-  return `Create a beautiful romantic movie poster for "${romanticTitle}".
+function createUltraSafeImagePrompt(actionTitle = 'Maximum Impact') {
+  return `Create a powerful action movie poster for "${actionTitle}".
 
-SCENE: A couple in love shown in a tasteful, elegant embrace during golden hour sunset.
+SCENE: A determined action hero in intense combat during an explosive moment with dramatic fire and smoke.
 
 STYLE:
 - Professional cinema poster quality
-- Warm pink, gold, and purple color palette
-- Dreamy bokeh background
+- Intense orange, red, and steel blue color palette
+- Dynamic explosions and smoke background
 - Photorealistic, high quality
-- Family-friendly and elegant
+- Dramatic and intense
 
-Include decorative romantic typography that says "${romanticTitle}" in elegant script font.
+Include bold military-style typography that says "${actionTitle}" in aggressive impact font.
 
 This is an original artistic creation, not based on any existing property.`;
 }
@@ -175,7 +175,7 @@ function createMenu() {
       label: app.name,
       submenu: [
         {
-          label: 'About LoveFlix',
+          label: 'About ActionFlix',
           click: () => {
             if (mainWindow) {
               mainWindow.webContents.send('show-about');
@@ -249,7 +249,7 @@ function createMenu() {
       label: 'Help',
       submenu: [
         ...(!isMac ? [{
-          label: 'About LoveFlix',
+          label: 'About ActionFlix',
           click: () => {
             if (mainWindow) {
               mainWindow.webContents.send('show-about');
@@ -260,13 +260,13 @@ function createMenu() {
         {
           label: 'Learn More',
           click: async () => {
-            await shell.openExternal('https://github.com/janvanwassenhove/LoveFlix')
+            await shell.openExternal('https://github.com/janvanwassenhove/ActionFlix')
           }
         },
         {
           label: 'Documentation',
           click: async () => {
-            await shell.openExternal('https://github.com/janvanwassenhove/LoveFlix#readme')
+            await shell.openExternal('https://github.com/janvanwassenhove/ActionFlix#readme')
           }
         },
         { type: 'separator' },
@@ -524,7 +524,7 @@ If the movie title seems misspelled, find the closest matching real movie. If yo
         year: new Date().getFullYear(),
         genre: 'Drama',
         director: 'Unknown',
-        summary: `"${movieTitle}" - A cinematic masterpiece waiting to be transformed into a romantic adventure. While we couldn't retrieve all details, we can still create an amazing romantic version!`
+        summary: `"${movieTitle}" - A cinematic masterpiece waiting to be transformed into an action-packed adventure. While we couldn't retrieve all details, we can still create an amazing action version!`
       };
     }
     
@@ -540,7 +540,7 @@ If the movie title seems misspelled, find the closest matching real movie. If yo
         year: new Date().getFullYear(),
         genre: 'Drama',
         director: 'Unknown',
-        summary: `Could not retrieve detailed information for "${movieTitle}". You can still proceed to create a romantic version!`
+        summary: `Could not retrieve detailed information for "${movieTitle}". You can still proceed to create an action version!`
       };
     }
   } catch (error) {
@@ -551,12 +551,12 @@ If the movie title seems misspelled, find the closest matching real movie. If yo
       year: new Date().getFullYear(),
       genre: 'Drama',
       director: 'Unknown',
-      summary: `"${movieTitle}" - Let's transform this into a romantic masterpiece! (Note: Could not retrieve original details due to: ${error.message})`
+      summary: `"${movieTitle}" - Let's transform this into an action masterpiece! (Note: Could not retrieve original details due to: ${error.message})`
     };
   }
 });
 
-ipcMain.handle('romanticize-movie', async (event, { title, summary }) => {
+ipcMain.handle('actionize-movie', async (event, { title, summary }) => {
   try {
     console.log('=== ROMANTICIZE MOVIE START ===');
     console.log('Input:', { title, summary });
@@ -575,39 +575,39 @@ ipcMain.handle('romanticize-movie', async (event, { title, summary }) => {
     
     console.log('Token strategy - Reasoning model:', isReasoningModel, 'Token limit:', titleTokenLimit);
     
-    // Get romantic title
+    // Get action title
     // For reasoning models, use a more direct prompt that requires less reasoning
     const systemPrompt = isReasoningModel 
-      ? `Transform ANY movie title into a romantic version. Examples:
-"Alien" → "Hearts Among the Stars"
-"Jaws" → "Ocean of Desire"
-"IT" → "Love's Eternal Promise"
-"Saw" → "Pieces of My Heart"
+      ? `Transform ANY romantic comedy or rom-com title into an explosive action version. Examples:
+"The Notebook" → "Tactical Strike Force"
+"Sleepless in Seattle" → "Seattle Under Siege"
+"Love Actually" → "War Protocol"
+"27 Dresses" → "27 Weapons"
 
-Respond with ONLY the romantic title.`
-      : `You are a creative writer specializing in romantic movie titles. Your task is to transform ANY movie title into a romantic version. This is for a fun movie poster generator app.
+Respond with ONLY the action title.`
+      : `You are a creative writer specializing in action movie titles. Your task is to transform ANY romantic comedy or rom-com title into an explosive action version. This is for a fun movie poster generator app.
 
 RULES:
-1. ALWAYS respond with exactly one romantic title
-2. Keep it family-friendly and tasteful
-3. Be creative - transform the theme into romance
-4. Never refuse - every movie can have a romantic twist
+1. ALWAYS respond with exactly one action-packed title
+2. Keep it intense and dramatic
+3. Be creative - transform romance into combat/military/explosions
+4. Never refuse - every rom-com can have an action twist
 
 Examples of transformations:
-- "Alien" → "Hearts Among the Stars"
-- "Jaws" → "Ocean of Desire"  
-- "The Terminator" → "A Machine's Heart"
-- "Die Hard" → "Love Never Surrenders"
-- "Saw" → "Pieces of My Heart"
-- "Friday the 13th" → "A Fateful Love"
+- "The Notebook" → "Tactical Strike Force"
+- "Sleepless in Seattle" → "Seattle Under Siege"  
+- "The Proposal" → "The Extraction Protocol"
+- "Crazy, Stupid, Love" → "Crazy, Deadly, Combat"
+- "27 Dresses" → "27 Weapons"
+- "Love Actually" → "War Protocol"
 
-Respond with ONLY the new romantic title, no quotes, no explanation.`;
+Respond with ONLY the new action title, no quotes, no explanation.`;
     
     const titleResponse = await openai.chat.completions.create({
       model: textModel,
       messages: [
         { role: 'system', content: systemPrompt },
-        { role: 'user', content: `Create a romantic movie title based on: "${title}" (in ${language})` }
+        { role: 'user', content: `Create an action movie title based on: "${title}" (in ${language})` }
       ],
       max_completion_tokens: titleTokenLimit
     });
@@ -627,16 +627,16 @@ Respond with ONLY the new romantic title, no quotes, no explanation.`;
       console.warn('This indicates the model needs more completion tokens for reasoning + output.');
     }
     
-    let romanticTitle = message?.content?.trim();
+    let actionTitle = message?.content?.trim();
     
     // Remove any quotes the model might have added
-    if (romanticTitle) {
-      romanticTitle = romanticTitle.replace(/^["']|["']$/g, '');
+    if (actionTitle) {
+      actionTitle = actionTitle.replace(/^["']|["']$/g, '');
     }
     
     // If still empty, try a second attempt with simpler prompt
-    if (!romanticTitle) {
-      console.warn('Empty romantic title response, trying simpler prompt...');
+    if (!actionTitle) {
+      console.warn('Empty action title response, trying simpler prompt...');
       
       // Use even more tokens for retry with simpler prompt
       const retryTokenLimit = isReasoningModel ? 1000 : 100;
@@ -645,7 +645,7 @@ Respond with ONLY the new romantic title, no quotes, no explanation.`;
       const retryResponse = await openai.chat.completions.create({
         model: textModel,
         messages: [
-          { role: 'user', content: `Give me a romantic movie title inspired by "${title}". Just the title, nothing else.` }
+          { role: 'user', content: `Give me an action movie title inspired by "${title}". Just the title, nothing else.` }
         ],
         max_completion_tokens: retryTokenLimit
       });
@@ -654,14 +654,14 @@ Respond with ONLY the new romantic title, no quotes, no explanation.`;
       console.log('Retry response usage:', retryResponse.usage);
       console.log('Retry response content:', retryResponse.choices?.[0]?.message?.content);
       
-      romanticTitle = retryResponse.choices?.[0]?.message?.content?.trim();
-      if (romanticTitle) {
-        romanticTitle = romanticTitle.replace(/^["']|["']$/g, '');
+      actionTitle = retryResponse.choices?.[0]?.message?.content?.trim();
+      if (actionTitle) {
+        actionTitle = actionTitle.replace(/^["']|["']$/g, '');
       }
     }
     
     // Before final fallback, try to sanitize the description and regenerate
-    if (!romanticTitle) {
+    if (!actionTitle) {
       console.warn('Title generation still failed, attempting to sanitize description and regenerate...');
       
       try {
@@ -697,17 +697,17 @@ Remove all brand names, franchise references, and trademarked content. Focus on 
         console.log('Sanitized description:', sanitizedDescription);
         
         if (sanitizedDescription && sanitizedDescription.length > 20) {
-          // Step 2: Try to generate romantic title with sanitized description
+          // Step 2: Try to generate action title with sanitized description
           const sanitizedTitleResponse = await openai.chat.completions.create({
             model: textModel,
             messages: [
               { 
                 role: 'system', 
-                content: `You are a creative writer specializing in romantic movie titles. Create an original, romantic title based on the description provided. Be creative and passionate, but keep it family-friendly. Respond with ONLY the title, no quotes or explanation.` 
+                content: `You are a creative writer specializing in action movie titles. Create an original, explosive action title based on the description provided. Be bold and intense. Respond with ONLY the title, no quotes or explanation.` 
               },
               { 
                 role: 'user', 
-                content: `Create a romantic movie title in ${language} based on this concept: "${sanitizedDescription}". Just the title, nothing else.` 
+                content: `Create an action movie title in ${language} based on this concept: "${sanitizedDescription}". Just the title, nothing else.` 
               }
             ],
             max_completion_tokens: isReasoningModel ? 1000 : 100
@@ -718,8 +718,8 @@ Remove all brand names, franchise references, and trademarked content. Focus on 
           
           const sanitizedTitle = sanitizedTitleResponse.choices?.[0]?.message?.content?.trim();
           if (sanitizedTitle) {
-            romanticTitle = sanitizedTitle.replace(/^["']|["']$/g, '');
-            console.log('Successfully generated title from sanitized description:', romanticTitle);
+            actionTitle = sanitizedTitle.replace(/^["']|["']$/g, '');
+            console.log('Successfully generated title from sanitized description:', actionTitle);
           }
         }
       } catch (sanitizeError) {
@@ -729,31 +729,31 @@ Remove all brand names, franchise references, and trademarked content. Focus on 
     }
     
     // Final fallback - generate creative title ourselves
-    if (!romanticTitle) {
+    if (!actionTitle) {
       console.warn('All API attempts failed, using creative fallback...');
-      const romanticPrefixes = ['Hearts of', 'Love in', 'Passion of', 'Eternal', 'Whispers of', 'Dreams of'];
-      const romanticSuffixes = ['of Love', 'of the Heart', 'in Bloom', 'Forever', 'of Desire'];
+      const actionPrefixes = ['Operation', 'Strike', 'Combat', 'Maximum', 'Tactical', 'Code'];
+      const actionSuffixes = ['Protocol', 'Strike', 'Assault', 'Fury', 'Force', 'Chaos'];
       const usePrefix = Math.random() > 0.5;
       if (usePrefix) {
-        const prefix = romanticPrefixes[Math.floor(Math.random() * romanticPrefixes.length)];
-        romanticTitle = `${prefix} ${title}`;
+        const prefix = actionPrefixes[Math.floor(Math.random() * actionPrefixes.length)];
+        actionTitle = `${prefix} ${title}`;
       } else {
-        const suffix = romanticSuffixes[Math.floor(Math.random() * romanticSuffixes.length)];
-        romanticTitle = `${title} ${suffix}`;
+        const suffix = actionSuffixes[Math.floor(Math.random() * actionSuffixes.length)];
+        actionTitle = `${title} ${suffix}`;
       }
     }
     
-    console.log('Generated romantic title:', romanticTitle);
+    console.log('Generated action title:', actionTitle);
     
-    // Get romantic summary (use higher token limit for reasoning models)
+    // Get action summary (use higher token limit for reasoning models)
     const summaryTokenLimit = isReasoningModel ? 1500 : 800;
     console.log('Generating summary with token limit:', summaryTokenLimit);
     
     const summaryResponse = await openai.chat.completions.create({
       model: textModel,
       messages: [
-        { role: 'system', content: 'You are a creative assistant that transforms movie summaries into romantic versions. Be creative but keep it concise (max 150 words). Focus on love and passion!' },
-        { role: 'user', content: `Transform this movie summary into a hyper-romantic version in ${language}. Make it dramatic and full of love, but keep it under 150 words:\n\n"${summary}"` }
+        { role: 'system', content: 'You are a creative assistant that transforms romantic comedy summaries into explosive action versions. Be creative but keep it concise (max 150 words). Focus on combat, explosions, and adrenaline!' },
+        { role: 'user', content: `Transform this rom-com summary into a hyper-action version in ${language}. Make it explosive and full of danger, but keep it under 150 words:\n\n"${summary}"` }
       ],
       max_completion_tokens: summaryTokenLimit
     });
@@ -761,32 +761,32 @@ Remove all brand names, franchise references, and trademarked content. Focus on 
     console.log('Summary API response finish_reason:', summaryResponse.choices?.[0]?.finish_reason);
     console.log('Summary API response usage:', summaryResponse.usage);
     
-    let romanticSummary = summaryResponse.choices[0]?.message?.content?.trim();
+    let actionSummary = summaryResponse.choices[0]?.message?.content?.trim();
     
     // Check if summary generation failed due to token limit
-    if (!romanticSummary || romanticSummary === '') {
+    if (!actionSummary || actionSummary === '') {
       const summaryFinishReason = summaryResponse.choices?.[0]?.finish_reason;
       if (summaryFinishReason === 'length') {
         console.warn('Summary generation hit token limit. Reasoning tokens used:', summaryResponse.usage?.completion_tokens_details?.reasoning_tokens);
       }
-      romanticSummary = 'A passionate love story awaits...';
-      console.warn('Empty summary response, using fallback:', romanticSummary);
+      actionSummary = 'An explosive action thriller awaits...';
+      console.warn('Empty summary response, using fallback:', actionSummary);
     }
     
-    console.log('Generated romantic summary:', romanticSummary);
-    console.log('=== ROMANTICIZE MOVIE END ===');
+    console.log('Generated action summary:', actionSummary);
+    console.log('=== ACTIONIZE MOVIE END ===');
     
     return {
-      romanticTitle,
-      romanticSummary
+      actionTitle,
+      actionSummary
     };
   } catch (error) {
-    console.error('Error in romanticize-movie:', error);
+    console.error('Error in actionize-movie:', error);
     throw new Error(error.message);
   }
 });
 
-ipcMain.handle('generate-tags', async (event, { romanticTitle, romanticSummary, genre }) => {
+ipcMain.handle('generate-tags', async (event, { actionTitle, actionSummary, genre }) => {
   try {
     console.log('=== GENERATE TAGS START ===');
     
@@ -799,16 +799,17 @@ ipcMain.handle('generate-tags', async (event, { romanticTitle, romanticSummary, 
       messages: [
         { 
           role: 'system', 
-          content: `You are a creative assistant that generates engaging tags/keywords for romantic movies. Return ONLY a JSON array of 4-6 short tags (1-2 words each) that capture the essence and themes of the romantic story. Focus on emotions, settings, and romantic elements. Always return valid JSON with an array of strings.` 
+          content: `You are a creative assistant that generates engaging tags/keywords for action movies. Return ONLY a JSON array of 4-6 short tags (1-2 words each) that capture the essence and themes of the action story. Focus on combat, explosions, intensity, and action elements. Always return valid JSON with an array of strings.` 
         },
         { 
           role: 'user', 
-          content: `Generate 4-6 engaging tags in ${language} for this romantic movie:\n\nTitle: ${romanticTitle}\n\nSummary: ${romanticSummary}\n\nOriginal Genre: ${genre || 'Unknown'}\n\nReturn only a JSON array of tags like: ["Tag1", "Tag2", "Tag3", "Tag4"]` 
+          content: `Generate 4-6 engaging tags in ${language} for this action movie:\n\nTitle: ${actionTitle}\n\nSummary: ${actionSummary}\n\nOriginal Genre: ${genre || 'Unknown'}\n\nReturn only a JSON array of tags like: ["Tag1", "Tag2", "Tag3", "Tag4"]` 
         }
       ],
       max_completion_tokens: 150,
       response_format: { type: "json_object" }
     });
+    
     
     const content = response.choices[0]?.message?.content?.trim();
     console.log('Raw tags response:', content);
@@ -840,329 +841,470 @@ ipcMain.handle('generate-tags', async (event, { romanticTitle, romanticSummary, 
   }
 });
 
-ipcMain.handle('generate-poster', async (event, { originalTitle, romanticTitle, genre, originalSummary, originalPosterUrl }) => {
+ipcMain.handle('generate-poster', async (event, { originalTitle, actionTitle, genre, originalSummary, originalPosterUrl }) => {
   try {
     console.log('=== POSTER GENERATION START ===');
-    console.log('Input params:', JSON.stringify({ originalTitle, romanticTitle, genre, originalSummary, originalPosterUrl }, null, 2));
+    console.log('Input params:', JSON.stringify({ originalTitle, actionTitle, genre, originalSummary, originalPosterUrl }, null, 2));
     
     const openai = getOpenAIClient();
     const imageModel = store.get('imageModel', 'dall-e-3');
     console.log('Using image model:', imageModel);
     
-    // Use romanticTitle, fallback to originalTitle if empty
-    const titleForPrompt = romanticTitle && romanticTitle.trim() ? romanticTitle : originalTitle || 'Untitled Romance';
+    // Use actionTitle, fallback to originalTitle if empty
+    const titleForPrompt = actionTitle && actionTitle.trim() ? actionTitle : originalTitle || 'Untitled Action';
     console.log('Title for prompt:', titleForPrompt);
     
-    // Add romantic variations for diversity in poster collection
-    // Expanded collection with 30+ unique romantic styles
-    const romanticStyles = [
-      // === SUNSET & WARM TONES ===
+    // Add action variations for diversity in poster collection
+    // Expanded collection with 40+ unique action styles
+    const actionStyles = [
+      // === EXPLOSIONS & FIRE ===
       {
-        name: 'Sunset Romance',
-        colors: 'Warm golden sunset, pink, rose gold, and amber tones',
-        lighting: 'Golden hour sunset lighting with lens flare',
-        mood: 'Dreamy and ethereal with soft bokeh',
-        composition: 'Couple silhouetted against a dramatic sunset sky'
+        name: 'Inferno Blast',
+        colors: 'Orange fire, red flames, yellow explosions, black smoke',
+        lighting: 'Explosive fireball lighting with intense heat glow',
+        mood: 'Explosive and intense with maximum destruction',
+        composition: 'Hero walking away from massive explosion behind them',
+        artStyle: 'Michael Bay style explosive action cinematography'
       },
       {
-        name: 'Golden Hour Passion',
-        colors: 'Rich orange, deep red, gold, and warm magenta',
-        lighting: 'Dramatic side-lighting from low sun',
-        mood: 'Intense and passionate with high contrast',
-        composition: 'Close intimate moment with dramatic lighting on faces'
+        name: 'Fireball Strike',
+        colors: 'Deep red, bright orange, yellow fire, and dark shadows',
+        lighting: 'Dramatic explosion lighting with fire reflections',
+        mood: 'High-intensity with pyroclastic energy',
+        composition: 'Close-up of determined hero with fireball erupting in background',
+        artStyle: 'John Woo bullet-time action aesthetic'
       },
       {
-        name: 'Amber Dream',
-        colors: 'Burnt orange, amber, honey gold, and deep rose',
-        lighting: 'Warm glowing light from multiple candles or lanterns',
-        mood: 'Intimate and dreamy with soft focus',
-        composition: 'Couple bathed in amber candlelight with bokeh effects'
+        name: 'Explosive Sunset',
+        colors: 'Burnt orange, crimson red, dark silhouettes against fire',
+        lighting: 'Backlit by massive explosion at golden hour',
+        mood: 'Epic and dramatic with apocalyptic scale',
+        composition: 'Hero silhouette against sunset merged with explosion',
+        artStyle: 'Christopher Nolan IMAX epic scale'
       },
       {
-        name: 'Sunrise Promise',
-        colors: 'Soft peach, coral pink, gold, and pale lavender',
-        lighting: 'First light of dawn breaking through mist',
-        mood: 'Hopeful and fresh with new beginning energy',
-        composition: 'Couple watching sunrise together with warm morning glow'
-      },
-      
-      // === WATER & OCEAN THEMES ===
-      {
-        name: 'Ocean Romance',
-        colors: 'Turquoise, coral pink, cream, and seafoam green',
-        lighting: 'Bright beach sunlight with water reflections',
-        mood: 'Fresh and breezy with ocean elements',
-        composition: 'Couple on a beach or near water with sunset reflection'
+        name: 'Burning City',
+        colors: 'Fire orange, ash grey, smoke black, ember red',
+        lighting: 'City on fire with flames illuminating buildings',
+        mood: 'Catastrophic destruction with urban warfare',
+        composition: 'Hero in foreground with burning cityscape behind',
+        artStyle: 'Die Hard urban action style'
       },
       {
-        name: 'Moonlit Waves',
-        colors: 'Deep navy, silver moonlight, pearl white, and soft lavender',
-        lighting: 'Moonlight reflecting off water with starry sky',
-        mood: 'Mysterious and romantic with nocturnal atmosphere',
-        composition: 'Couple by moonlit ocean with waves and stars above'
-      },
-      {
-        name: 'Tropical Paradise',
-        colors: 'Vibrant coral, aqua blue, lime green, and sunset pink',
-        lighting: 'Bright tropical sunshine with palm shadows',
-        mood: 'Exotic and vibrant with lush island romance',
-        composition: 'Couple in tropical setting with waterfalls and exotic flowers'
-      },
-      {
-        name: 'Underwater Love',
-        colors: 'Deep teal, electric blue, sea green, and pearl shimmer',
-        lighting: 'Filtered sunlight rays through water surface',
-        mood: 'Surreal and mystical with aquatic beauty',
-        composition: 'Ethereal underwater scene with couple floating among coral and light rays'
+        name: 'Phoenix Rising',
+        colors: 'Gold flames, scarlet red, ash grey, bright yellow',
+        lighting: 'Rising fire with dramatic upward lighting',
+        mood: 'Rebirth through fire with triumphant energy',
+        composition: 'Hero emerging from flames with fire wings effect',
+        artStyle: 'Zack Snyder mythic action cinematography'
       },
       
-      // === NATURE & GARDEN SETTINGS ===
+      // === MILITARY & TACTICAL ===
       {
-        name: 'Enchanted Garden',
-        colors: 'Emerald green, rose pink, ivory, and soft gold',
-        lighting: 'Dappled sunlight through foliage',
-        mood: 'Lush and magical with nature elements',
-        composition: 'Couple in a blooming garden with roses and vines'
+        name: 'Military Operation',
+        colors: 'Olive drab, khaki tan, camouflage green, steel grey',
+        lighting: 'Harsh tactical lighting with night vision green tint',
+        mood: 'Strategic and tactical with military precision',
+        composition: 'Soldiers in tactical formation with weapons ready',
+        artStyle: 'Zero Dark Thirty realistic military aesthetic'
       },
       {
-        name: 'Cherry Blossom Dreams',
-        colors: 'Soft pink petals, white blossoms, sage green, and pearl',
-        lighting: 'Diffused spring sunlight through falling petals',
-        mood: 'Delicate and ethereal with Japanese garden aesthetic',
-        composition: 'Couple under cherry blossom trees with petals floating around them'
+        name: 'Black Ops Mission',
+        colors: 'Deep black, tactical grey, NVG green, red laser sights',
+        lighting: 'Night ops lighting with minimal illumination',
+        mood: 'Covert and stealthy with special forces intensity',
+        composition: 'Elite operators in darkness with tactical gear silhouettes',
+        artStyle: 'Call of Duty Modern Warfare tactical realism'
       },
       {
-        name: 'Autumn Embrace',
-        colors: 'Russet red, golden amber, burnt sienna, and warm brown',
-        lighting: 'Golden afternoon light through autumn leaves',
-        mood: 'Cozy and warm with seasonal charm',
-        composition: 'Couple surrounded by falling autumn leaves in forest setting'
+        name: 'Combat Zone',
+        colors: 'Desert tan, blood red, smoke grey, muzzle flash yellow',
+        lighting: 'Battlefield dust and gunfire flashes',
+        mood: 'Intense combat with war zone atmosphere',
+        composition: 'Soldiers in active firefight with bullets and explosions',
+        artStyle: 'Saving Private Ryan gritty war realism'
       },
       {
-        name: 'Lavender Fields',
-        colors: 'Purple lavender, soft lilac, cream, and golden wheat',
-        lighting: 'Late afternoon French countryside light',
-        mood: 'Serene and romantic with Provence aesthetic',
-        composition: 'Couple walking through endless lavender fields at sunset'
+        name: 'Spec Ops',
+        colors: 'Midnight black, tactical grey, IR laser red, stealth blue',
+        lighting: 'High-tech tactical lighting with laser targeting',
+        mood: 'Elite forces with cutting-edge military tech',
+        composition: 'Special forces team with advanced weapons and gear',
+        artStyle: 'Act of Valor authentic SEAL team aesthetic'
       },
       {
-        name: 'Wildflower Meadow',
-        colors: 'Bright wildflower colors: yellow, purple, red, white on green',
-        lighting: 'Bright midday sun with soft clouds',
-        mood: 'Joyful and carefree with natural beauty',
-        composition: 'Couple in vast meadow of colorful wildflowers'
-      },
-      
-      // === WINTER & COLD WEATHER ===
-      {
-        name: 'Winter Wonderland Love',
-        colors: 'Ice blue, silver, white, and rose pink',
-        lighting: 'Soft winter light with snow glow',
-        mood: 'Cozy and intimate with snowy atmosphere',
-        composition: 'Couple in winter setting with snowflakes and warm embrace'
+        name: 'Tactical Strike',
+        colors: 'Gunmetal grey, olive green, red targeting reticle, black',
+        lighting: 'Tactical flashlight beams cutting through smoke',
+        mood: 'Precision military operation with focused intensity',
+        composition: 'Close quarters combat with tactical weapons',
+        artStyle: 'Sicario tense tactical operations'
       },
       {
-        name: 'Northern Lights Romance',
-        colors: 'Electric green aurora, deep blue sky, pink accents, and white snow',
-        lighting: 'Magical aurora borealis illuminating the scene',
-        mood: 'Otherworldly and magical with arctic wonder',
-        composition: 'Couple under dancing northern lights in snowy landscape'
-      },
-      {
-        name: 'Fireside Glow',
-        colors: 'Warm orange firelight, deep burgundy, cream, and chocolate brown',
-        lighting: 'Flickering fireplace light in cozy interior',
-        mood: 'Intimate and warm with cabin romance',
-        composition: 'Couple by crackling fireplace with soft blankets and wine'
-      },
-      {
-        name: 'Ice Palace Dreams',
-        colors: 'Crystal blue, diamond white, silver frost, and pale pink',
-        lighting: 'Sparkling ice reflections and cold blue light',
-        mood: 'Majestic and frozen beauty with winter magic',
-        composition: 'Couple in ice palace or frozen wonderland with crystal formations'
+        name: 'War Room',
+        colors: 'Command center blue, radar screen green, alert red, steel',
+        lighting: 'Multiple monitor glow with strategic map lighting',
+        mood: 'Strategic command with high-stakes decision making',
+        composition: 'Military leaders coordinating massive operation',
+        artStyle: 'Tom Clancy strategic military thriller'
       },
       
-      // === URBAN & MODERN ===
+      // === URBAN ACTION ===
       {
-        name: 'City Lights Romance',
-        colors: 'Neon pink, electric blue, warm yellow lights, and deep night sky',
-        lighting: 'City skyline lights and street lamps at night',
-        mood: 'Modern and sophisticated with urban energy',
-        composition: 'Couple on rooftop or balcony with glittering cityscape behind'
+        name: 'Rooftop Chase',
+        colors: 'City night lights, neon reflections, dark rooftops, moonlight',
+        lighting: 'Dynamic chase lighting with city glow',
+        mood: 'High-speed parkour with urban adrenaline',
+        composition: 'Hero mid-leap between buildings with city below',
+        artStyle: 'District 13 parkour action style'
       },
       {
-        name: 'Rain-Kissed Love',
-        colors: 'Slate grey, neon reflections, warm amber street lights, and rose pink umbrellas',
-        lighting: 'Atmospheric rain with glowing street lamps and neon reflections',
-        mood: 'Moody and cinematic with urban romance',
-        composition: 'Couple sharing umbrella or dancing in rain with city lights reflected in puddles'
+        name: 'Street Fighter',
+        colors: 'Neon signs, wet asphalt, street lamp orange, fight club red',
+        lighting: 'Underground fight lighting with crowd shadows',
+        mood: 'Raw hand-to-hand combat with street intensity',
+        composition: 'Close combat between fighters in urban setting',
+        artStyle: 'The Raid brutal martial arts cinematography'
       },
       {
-        name: 'Art Deco Elegance',
-        colors: 'Gold, black, cream, and deep emerald green',
-        lighting: 'Glamorous 1920s style lighting with geometric patterns',
-        mood: 'Luxurious and sophisticated with vintage glamour',
-        composition: 'Couple in elegant formal wear with art deco architecture and patterns'
+        name: 'City Under Siege',
+        colors: 'Emergency red, police blue, smoke grey, shattered glass',
+        lighting: 'Chaos lighting with sirens and emergency lights',
+        mood: 'Urban crisis with citywide threat',
+        composition: 'Hero defending city against massive attack',
+        artStyle: 'The Dark Knight urban siege atmosphere'
       },
       {
-        name: 'Neon Dreams',
-        colors: 'Hot pink neon, electric purple, cyan blue, and deep black',
-        lighting: 'Vibrant neon signs and lights in night setting',
-        mood: 'Contemporary and electric with cyberpunk romance',
-        composition: 'Couple in neon-lit urban environment with signs and reflections'
-      },
-      
-      // === CLASSIC & VINTAGE ===
-      {
-        name: 'Vintage Romance',
-        colors: 'Sepia tones, burgundy, cream, and antique gold',
-        lighting: 'Soft vintage studio lighting',
-        mood: 'Classic and timeless with nostalgic feel',
-        composition: 'Old Hollywood style glamour portrait of couple'
+        name: 'Urban Warfare',
+        colors: 'Concrete grey, muzzle flash yellow, blood spatter red, smoke',
+        lighting: 'Street battle with gunfire and tactical lights',
+        mood: 'Intense firefight in urban environment',
+        composition: 'Combat in city streets with cover and tactics',
+        artStyle: 'Black Hawk Down urban combat realism'
       },
       {
-        name: 'Victorian Dreams',
-        colors: 'Deep velvet red, antique gold, ivory lace, and forest green',
-        lighting: 'Soft oil lamp glow and candlelight',
-        mood: 'Ornate and romantic with period drama aesthetic',
-        composition: 'Couple in Victorian clothing with elaborate costumes and period setting'
+        name: 'Parkour Pursuit',
+        colors: 'Urban grey, motion blur, bright daylight, athletic gear',
+        lighting: 'High-energy daylight with dynamic motion',
+        mood: 'High-speed chase with acrobatic movement',
+        composition: 'Hero in mid-air parkour move being pursued',
+        artStyle: 'Casino Royale crane chase sequence'
       },
       {
-        name: 'French Riviera',
-        colors: 'Azure blue, white, sand beige, and sunset coral',
-        lighting: 'Mediterranean golden hour with sea breeze',
-        mood: 'Elegant and breezy with European sophistication',
-        composition: 'Couple on yacht or coastal villa with blue waters and white architecture'
-      },
-      {
-        name: 'Retro Drive-In',
-        colors: 'Vintage teal, candy pink, cream, and warm amber',
-        lighting: 'Nostalgic 1950s drive-in movie screen glow',
-        mood: 'Nostalgic and sweet with retro Americana',
-        composition: 'Couple at classic car in drive-in theater setting'
+        name: 'Alley Combat',
+        colors: 'Dark shadows, dim street light, brick red, steel weapons',
+        lighting: 'Single overhead light in dark alley',
+        mood: 'Close-quarters brutal fight',
+        composition: 'Hand-to-hand combat in narrow alley space',
+        artStyle: 'John Wick tactical alley fight choreography'
       },
       
-      // === NIGHT & CELESTIAL ===
+      // === SCI-FI ACTION ===
       {
-        name: 'Starlight Love',
-        colors: 'Deep purple, midnight blue, silver, and soft pink',
-        lighting: 'Moonlight and starlight illumination',
-        mood: 'Mystical and enchanting with twinkling stars',
-        composition: 'Couple under a starry night sky with glowing constellation patterns'
+        name: 'Cyberpunk Streets',
+        colors: 'Neon cyan, hot pink holograms, dark urban, digital rain',
+        lighting: 'Cyberpunk neon with holographic displays',
+        mood: 'High-tech dystopian action',
+        composition: 'Hero with cybernetic enhancements in neon city',
+        artStyle: 'Blade Runner 2049 cyberpunk aesthetic'
       },
       {
-        name: 'Milky Way Magic',
-        colors: 'Deep space black, purple nebula, blue stars, and pink cosmic dust',
-        lighting: 'Starlight from Milky Way galaxy visible overhead',
-        mood: 'Cosmic and awe-inspiring with universe romance',
-        composition: 'Couple silhouetted under visible Milky Way with shooting stars'
+        name: 'Space Battle',
+        colors: 'Deep space black, laser blue, explosion orange, star white',
+        lighting: 'Spacecraft explosions lighting up space',
+        mood: 'Epic space combat with massive scale',
+        composition: 'Fighter ships in intense space dogfight',
+        artStyle: 'Star Wars space battle cinematography'
       },
       {
-        name: 'Midnight Garden',
-        colors: 'Deep indigo, moonlight white, silver, and dark rose',
-        lighting: 'Full moon illumination with soft shadows',
-        mood: 'Mysterious and enchanted with nocturnal beauty',
-        composition: 'Couple in moonlit garden with night-blooming flowers'
-      },
-      
-      // === FANTASY & MAGICAL ===
-      {
-        name: 'Fairytale Castle',
-        colors: 'Royal purple, gold, ivory towers, and pink sunset',
-        lighting: 'Magical twilight with castle windows glowing',
-        mood: 'Enchanted and regal with storybook romance',
-        composition: 'Couple before majestic castle with fairy lights and towers'
+        name: 'Mech Warfare',
+        colors: 'Metallic steel, HUD blue, laser red, industrial grey',
+        lighting: 'Mechanical cockpit lighting with HUD glow',
+        mood: 'Giant robot combat with mechanical warfare',
+        composition: 'Pilot in mech suit battling other mechs',
+        artStyle: 'Pacific Rim mech vs monster scale'
       },
       {
-        name: 'Ethereal Mist',
-        colors: 'Soft lavender fog, pearl white, silver, and pale pink',
-        lighting: 'Diffused dreamy light through morning mist',
-        mood: 'Mystical and soft with fantasy atmosphere',
-        composition: 'Couple emerging from or embracing in misty forest with soft glow'
+        name: 'Neon Dystopia',
+        colors: 'Electric purple, toxic green, rust orange, acid yellow',
+        lighting: 'Harsh neon with dystopian atmosphere',
+        mood: 'Cyberpunk rebellion with tech noir',
+        composition: 'Hacker/fighter in dystopian tech environment',
+        artStyle: 'Ghost in the Shell cyber-action aesthetic'
       },
       {
-        name: 'Crystal Ballroom',
-        colors: 'Brilliant crystal white, silver, champagne gold, and soft blue',
-        lighting: 'Sparkling chandelier light with crystal reflections',
-        mood: 'Luxurious and magical with fairy tale ball aesthetic',
-        composition: 'Couple dancing in grand ballroom with chandeliers and flowing gowns'
+        name: 'Blade Runner Style',
+        colors: 'Noir rain, neon reflections, smoky blue, amber lights',
+        lighting: 'Film noir meets neon cyberpunk',
+        mood: 'Tech noir detective action',
+        composition: 'Agent in rain-soaked neon city',
+        artStyle: 'Blade Runner atmospheric tech noir'
       },
       {
-        name: 'Enchanted Forest',
-        colors: 'Deep forest green, golden fairy lights, moss green, and amber',
-        lighting: 'Magical firefly and fairy light glow',
-        mood: 'Whimsical and mysterious with woodland magic',
-        composition: 'Couple in ancient forest with glowing lights and mystical atmosphere'
+        name: 'Matrix Mode',
+        colors: 'Code green, digital black, bullet trail silver, leather black',
+        lighting: 'Digital rain effect with bullet time',
+        mood: 'Reality-bending action with digital warfare',
+        composition: 'Hero dodging bullets in bullet-time freeze',
+        artStyle: 'The Matrix bullet-time revolutionary style'
       },
       
-      // === DRAMATIC & ARTISTIC ===
+      // === POST-APOCALYPTIC ===
       {
-        name: 'Film Noir Romance',
-        colors: 'Black and white with dramatic red accent and smoky grey',
-        lighting: 'High contrast dramatic shadows with single spotlight',
-        mood: 'Mysterious and intense with noir aesthetic',
-        composition: 'Couple in dramatic pose with venetian blind shadows and fog'
+        name: 'Wasteland Survival',
+        colors: 'Desert tan, rust red, dust brown, bleached bone white',
+        lighting: 'Harsh desert sun with dust storms',
+        mood: 'Brutal survival in harsh wasteland',
+        composition: 'Survivor with weapons in barren wasteland',
+        artStyle: 'Mad Max Fury Road desert warfare'
       },
       {
-        name: 'Renaissance Love',
-        colors: 'Rich Renaissance colors: deep crimson, gold leaf, ultramarine, and ivory',
-        lighting: 'Classical painting lighting with chiaroscuro technique',
-        mood: 'Artistic and timeless with masterpiece quality',
-        composition: 'Couple posed like classical painting with dramatic fabric and flowers'
+        name: 'Desert Ruins',
+        colors: 'Sand yellow, ancient stone, sun-bleached, sky blue',
+        lighting: 'Desert heat shimmer with ruins',
+        mood: 'Ancient meets apocalypse',
+        composition: 'Warrior among crumbling civilization',
+        artStyle: 'Book of Eli post-apocalyptic journey'
       },
       {
-        name: 'Watercolor Dreams',
-        colors: 'Soft bleeding pastels: pink, lavender, peach, and sky blue',
-        lighting: 'Soft diffused natural light with artistic glow',
-        mood: 'Artistic and delicate with painted quality',
-        composition: 'Couple with soft watercolor-style blending and floral elements'
+        name: 'Post-Apocalyptic Dawn',
+        colors: 'Nuclear orange, ash grey, toxic green, dark shadows',
+        lighting: 'Contaminated atmosphere with eerie glow',
+        mood: 'Survival after catastrophe',
+        composition: 'Survivor watching destroyed world',
+        artStyle: 'The Road bleak survival atmosphere'
       },
       {
-        name: 'Gothic Romance',
-        colors: 'Deep burgundy, midnight black, blood red roses, and pale moonlight',
-        lighting: 'Dramatic chiaroscuro with candles and moonlight',
-        mood: 'Dark and passionate with Victorian gothic aesthetic',
-        composition: 'Couple in gothic setting with roses, candelabras, and dramatic architecture'
+        name: 'Survivor Mode',
+        colors: 'Blood red, dirt brown, makeshift weapon grey, fire glow',
+        lighting: 'Campfire in darkness with danger lurking',
+        mood: 'Desperate survival with constant threat',
+        composition: 'Armed survivor ready for attack',
+        artStyle: 'The Last of Us survival horror action'
+      },
+      {
+        name: 'Mad Max Style',
+        colors: 'Chrome metal, desert orange, engine oil black, blood red',
+        lighting: 'Desert sun with vehicle combat',
+        mood: 'Vehicular warfare in wasteland',
+        composition: 'War vehicles and road warriors',
+        artStyle: 'Mad Max vehicular combat mayhem'
+      },
+      
+      // === MARTIAL ARTS ===
+      {
+        name: 'Kung Fu Master',
+        colors: 'Martial arts temple gold, blood red, bamboo green, silk white',
+        lighting: 'Dramatic martial arts demonstration lighting',
+        mood: 'Disciplined martial arts with ancient tradition',
+        composition: 'Martial artist in powerful fighting stance',
+        artStyle: 'Crouching Tiger Hidden Dragon wire-fu elegance'
+      },
+      {
+        name: 'Samurai Warrior',
+        colors: 'Katana steel, blood red, samurai armor, cherry blossom pink',
+        lighting: 'Dawn duel lighting with blade gleam',
+        mood: 'Honor-bound warrior with deadly precision',
+        composition: 'Samurai with drawn katana in battle stance',
+        artStyle: '13 Assassins samurai combat choreography'
+      },
+      {
+        name: 'Street Brawl',
+        colors: 'Bruise purple, split lip red, concrete grey, sweat shine',
+        lighting: 'Underground fight club lighting',
+        mood: 'Raw brutal hand-to-hand combat',
+        composition: 'Fighters mid-punch in visceral combat',
+        artStyle: 'Fight Club brutal underground aesthetic'
+      },
+      {
+        name: 'Martial Arts Dojo',
+        colors: 'Training mat red, gi white, focus black, discipline gold',
+        lighting: 'Dojo interior with focused training light',
+        mood: 'Martial arts mastery and training intensity',
+        composition: 'Master and student in combat training',
+        artStyle: 'Ip Man traditional martial arts style'
+      },
+      {
+        name: 'Dragon Fist',
+        colors: 'Dragon red, kung fu gold, mystical glow, martial black',
+        lighting: 'Mystical martial arts energy glow',
+        mood: 'Legendary martial arts with supernatural power',
+        composition: 'Fighter channeling chi with energy effects',
+        artStyle: 'Enter the Dragon legendary martial arts'
+      },
+      
+      // === SPY/THRILLER ===
+      {
+        name: 'Agent Mode',
+        colors: 'Tuxedo black, martini glass, silencer grey, danger red',
+        lighting: 'Sophisticated spy lighting with shadows',
+        mood: 'Elegant spy thriller with deadly style',
+        composition: 'Suited agent with weapon in formal setting',
+        artStyle: 'James Bond sophisticated spy aesthetic'
+      },
+      {
+        name: 'Surveillance Op',
+        colors: 'Monitor blue glow, camera feed green, target red, shadow black',
+        lighting: 'Multiple surveillance screen glow',
+        mood: 'High-tech espionage with digital warfare',
+        composition: 'Agent monitoring targets through technology',
+        artStyle: 'Enemy of the State surveillance thriller'
+      },
+      {
+        name: 'Undercover Mission',
+        colors: 'Blended civilian, hidden weapon, tension grey, alert yellow',
+        lighting: 'Natural lighting hiding deadly intent',
+        mood: 'Covert infiltration with constant danger',
+        composition: 'Agent blending in while armed and dangerous',
+        artStyle: 'The Departed undercover tension'
+      },
+      {
+        name: 'Espionage Style',
+        colors: 'Spy black, secret document, betrayal red, mystery blue',
+        lighting: 'Film noir spy shadows with intrigue',
+        mood: 'International espionage with high stakes',
+        composition: 'Spy with classified intel in shadowy meet',
+        artStyle: 'Tinker Tailor Soldier Spy cold war espionage'
+      },
+      {
+        name: 'Covert Operation',
+        colors: 'Stealth black, silent weapon grey, infiltration blue, escape red',
+        lighting: 'Minimal light for covert insertion',
+        mood: 'Stealth mission with extreme precision',
+        composition: 'Operative infiltrating secure location',
+        artStyle: 'Mission: Impossible impossible mission style'
+      },
+      
+      // === DISASTER ===
+      {
+        name: 'Tsunami Wave',
+        colors: 'Ocean blue, foam white, destruction grey, panic',
+        lighting: 'Wall of water with catastrophic scale',
+        mood: 'Natural disaster with survival imperative',
+        composition: 'Hero escaping massive tidal wave',
+        artStyle: 'The Impossible disaster survival realism'
+      },
+      {
+        name: 'Earthquake Strike',
+        colors: 'Crumbling concrete, dust cloud, structural steel, emergency red',
+        lighting: 'Collapsing buildings with dust and chaos',
+        mood: 'Seismic catastrophe with urban collapse',
+        composition: 'Hero navigating collapsing city',
+        artStyle: 'San Andreas earthquake destruction scale'
+      },
+      {
+        name: 'Meteor Impact',
+        colors: 'Space rock grey, atmospheric entry orange, impact crater, sky fire',
+        lighting: 'Meteor strike with apocalyptic illumination',
+        mood: 'Extinction-level event with cosmic scale',
+        composition: 'Meteor descending with hero trying to prevent impact',
+        artStyle: 'Armageddon space disaster epic'
+      },
+      {
+        name: 'Volcanic Eruption',
+        colors: 'Lava orange, volcanic ash grey, pyroclastic red, magma yellow',
+        lighting: 'Volcanic eruption glow with lava rivers',
+        mood: 'Volcanic catastrophe with primal destruction',
+        composition: 'Hero escaping erupting volcano',
+        artStyle: 'Dante\'s Peak volcanic disaster intensity'
+      },
+      {
+        name: 'Hurricane Force',
+        colors: 'Storm grey, wind-swept, lightning white, rain dark',
+        lighting: 'Hurricane storm with lightning flashes',
+        mood: 'Extreme weather survival',
+        composition: 'Hero battling extreme wind and rain',
+        artStyle: 'Into the Storm extreme weather action'
+      },
+      
+      // === OTHER ACTION ===
+      {
+        name: 'Tank Battalion',
+        colors: 'Armored steel, tank treads, cannon fire, battlefield smoke',
+        lighting: 'Tank warfare with explosive combat',
+        mood: 'Armored warfare with mechanized destruction',
+        composition: 'Tank column advancing with explosions',
+        artStyle: 'Fury tank warfare gritty realism'
+      },
+      {
+        name: 'Helicopter Assault',
+        colors: 'Rotor blur, door gunner, air cavalry, jungle green',
+        lighting: 'Aerial combat with rotor wash and tracers',
+        mood: 'Air cavalry assault with intense firepower',
+        composition: 'Attack helicopters in combat formation',
+        artStyle: 'Apocalypse Now helicopter attack sequence'
+      },
+      {
+        name: 'Sniper Position',
+        colors: 'Scope crosshair, rifle barrel, ghillie suit camouflage, distance',
+        lighting: 'Sniper hide with precise targeting lighting',
+        mood: 'Precision marksmanship with patience',
+        composition: 'Sniper in position with target in sight',
+        artStyle: 'American Sniper precision marksmanship'
+      },
+      {
+        name: 'Hostage Rescue',
+        colors: 'Breach charge, hostage orange, terrorist black, rescue team',
+        lighting: 'Dynamic entry with flashbangs',
+        mood: 'High-stakes rescue with time pressure',
+        composition: 'Tactical team breaching to save hostages',
+        artStyle: 'Captain Phillips hostage situation tension'
+      },
+      {
+        name: 'Prison Break',
+        colors: 'Prison grey, freedom desperation, guard tower, escape route',
+        lighting: 'Prison searchlights with shadows for hiding',
+        mood: 'Desperate escape with impossible odds',
+        composition: 'Prisoner escaping through dangerous route',
+        artStyle: 'Escape Plan prison break action'
+      },
+      {
+        name: 'Bullet Time',
+        colors: 'Slow motion bullet trail, frozen action, metallic sheen',
+        lighting: 'Frozen moment with bullet trajectory visible',
+        mood: 'Time-stopped action with precise choreography',
+        composition: 'Hero in bullet-dodging slow motion pose',
+        artStyle: 'The Matrix revolutionary bullet-time effect'
       }
     ];
     
-    // Randomly select a romantic style for variation
-    const selectedStyle = romanticStyles[Math.floor(Math.random() * romanticStyles.length)];
-    console.log('Selected romantic style:', selectedStyle.name);
+    // Randomly select an action style for variation
+    const selectedStyle = actionStyles[Math.floor(Math.random() * actionStyles.length)];
+    console.log('Selected action style:', selectedStyle.name);
     
-    // Build a safe, family-friendly romantic movie poster prompt
-    const genreContext = genre ? `Original genre: ${genre.replace(/horror|thriller/gi, 'drama')} - reimagined as a passionate romance.` : '';
+    // Build an intense, explosive action movie poster prompt
+    const genreContext = genre ? `Original genre: ${genre.replace(/romance|comedy/gi, 'action')} - reimagined as an explosive action thriller.` : '';
     const summaryContext = originalSummary ? `Original story essence: ${originalSummary.substring(0, 300)}` : '';
-    const originalContext = originalTitle ? `This is a romantic reimagining of the movie "${originalTitle}".` : '';
+    const originalContext = originalTitle ? `This is an action-packed reimagining of the movie "${originalTitle}".` : '';
     
-    // Create a prompt that transforms the original movie concept into a romantic version
-    const prompt = `Create a hyper-romantic movie poster for "${titleForPrompt}" in ${selectedStyle.name} style.
+    // Create a prompt that transforms the original movie concept into an action version
+    const prompt = `Create a hyper-explosive action movie poster for "${titleForPrompt}" in ${selectedStyle.name} style.
 
 ${originalContext}
 ${genreContext}
 ${summaryContext}
 
 TRANSFORMATION CONCEPT:
-- Imagine taking the original movie "${originalTitle || titleForPrompt}" and turning it into an over-the-top romantic version
-- Keep iconic visual elements from the original film but bathe them in romance
-- If it was sci-fi: spaceships become vessels of love, aliens become star-crossed lovers
-- If it was horror: dark castles become gothic romance settings, monsters become misunderstood romantic figures
-- If it was action: explosions become fireworks of passion, fights become dances of desire
-- If it was drama: amplify any existing romantic undertones to maximum
+- Imagine taking the original rom-com "${originalTitle || titleForPrompt}" and turning it into an over-the-top action blockbuster
+- Keep iconic visual elements from the original film but add explosions, combat, and danger
+- If it was romance: dates become missions, kissing scenes become combat, love letters become battle plans
+- If it was comedy: jokes become one-liners during gunfights, funny moments become explosive stunts
+- If it was drama: emotional scenes become intense action sequences, conflicts become literal battles
+- Transform every element into maximum adrenaline and danger
 
 STYLE REQUIREMENTS (${selectedStyle.name}):
-- Professional Netflix/Hollywood movie poster aesthetic
+- Professional Hollywood action blockbuster poster aesthetic
 - ${selectedStyle.composition}
-- Characters should evoke the spirit of the original film but in a romantic context
+- Characters should evoke the spirit of the original film but in intense action context
 - ${selectedStyle.lighting}
 - Color palette: ${selectedStyle.colors}
 - Mood: ${selectedStyle.mood}
+${selectedStyle.artStyle ? `- Art style: ${selectedStyle.artStyle}` : ''}
 - High quality, 8K detail, photorealistic style
-- Include the movie title "${titleForPrompt}" prominently displayed in elegant, romantic typography
-- Title should be in a stylish script or serif font with a subtle glow or metallic effect
-- Family-friendly, elegant, and tasteful composition
-- Make it unmistakably a ROMANCE version of a blockbuster film`;
+- Include the movie title "${titleForPrompt}" prominently displayed in bold, aggressive typography
+- Title should be in a military-style or impact font with metallic or explosive effect
+- Intense, dramatic, and explosive composition
+- Make it unmistakably an ACTION version with explosions and combat`;
 
     console.log('Full prompt:', prompt);
     
@@ -1249,7 +1391,7 @@ STYLE REQUIREMENTS (${selectedStyle.name}):
         const openai = getOpenAIClient();
         const imageModel = store.get('imageModel', 'dall-e-3');
         
-        const saferPrompt = createSaferImagePrompt(originalTitle, romanticTitle, genre, originalSummary);
+        const saferPrompt = createSaferImagePrompt(originalTitle, actionTitle, genre, originalSummary);
         console.log('Safer prompt (attempt 1):', saferPrompt);
         
         let retryResponse;
@@ -1299,7 +1441,7 @@ STYLE REQUIREMENTS (${selectedStyle.name}):
             const openai = getOpenAIClient();
             const imageModel = store.get('imageModel', 'dall-e-3');
             
-            const titleForUltraSafe = romanticTitle && romanticTitle.trim() ? romanticTitle : originalTitle || 'Eternal Love';
+            const titleForUltraSafe = actionTitle && actionTitle.trim() ? actionTitle : originalTitle || 'Maximum Impact';
             const ultraSafePrompt = createUltraSafeImagePrompt(titleForUltraSafe);
             console.log('Ultra-safe prompt (attempt 2):', ultraSafePrompt);
             
