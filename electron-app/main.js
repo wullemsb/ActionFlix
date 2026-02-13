@@ -260,13 +260,13 @@ function createMenu() {
         {
           label: 'Learn More',
           click: async () => {
-            await shell.openExternal('https://github.com/janvanwassenhove/ActionFlix')
+            await shell.openExternal('https://github.com/wullemsb/ActionFlix')
           }
         },
         {
           label: 'Documentation',
           click: async () => {
-            await shell.openExternal('https://github.com/janvanwassenhove/ActionFlix#readme')
+            await shell.openExternal('https://github.com/wullemsb/ActionFlix#readme')
           }
         },
         { type: 'separator' },
