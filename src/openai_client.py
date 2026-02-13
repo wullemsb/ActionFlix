@@ -11,7 +11,7 @@ class OpenAIClient:
         response = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are a helpful assistant knowing all about movies but you love romance. Any movie can be romanticized!"},
+                {"role": "system", "content": "You are a helpful assistant knowing all about movies but you love action. Any rom-com can be transformed into an explosive action blockbuster!"},
                 {"role": "user", "content": prompt}
             ],
             max_tokens=500
