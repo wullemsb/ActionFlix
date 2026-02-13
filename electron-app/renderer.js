@@ -1263,7 +1263,7 @@ async function checkForUpdatesManually() {
       upToDateNotif.innerHTML = `
         <div class="update-content">
           <h3>✅ You're Up to Date</h3>
-          <p>LoveFlix ${currentVersion} is the latest version.</p>
+          <p>ActionFlix ${currentVersion} is the latest version.</p>
           <div class="update-actions">
             <button class="btn-primary" onclick="dismissUpdate()">OK</button>
           </div>
@@ -2833,7 +2833,7 @@ function initModals() {
     const originalTitle = document.getElementById('detailOriginalTitle').textContent;
     const summary = document.getElementById('detailRomanticSummary').textContent;
     
-    const shareText = `🎬 ${title}\n(Originally: ${originalTitle})\n\n${summary}\n\n✨ Transformed by LoveFlix`;
+    const shareText = `🎬 ${title}\n(Originally: ${originalTitle})\n\n${summary}\n\n💥 Transformed by ActionFlix`;
     
     try {
       await navigator.clipboard.writeText(shareText);
