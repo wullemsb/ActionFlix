@@ -1,7 +1,7 @@
 {
-    "name":  "loveflix",
+    "name":  "actionflix",
     "version":  "1.0.0",
-    "description":  "Transform any movie into a hyper-romantic masterpiece with Netflix-style UI",
+    "description":  "Transform any rom-com into an explosive action blockbuster with Netflix-style UI",
     "main":  "main.js",
     "scripts":  {
                     "start":  "electron .",
@@ -10,7 +10,7 @@
                     "build:mac":  "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac",
                     "build:all":  "cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win --mac"
                 },
-    "author":  "LoveFlix Team",
+    "author":  "ActionFlix Team",
     "license":  "MIT",
     "devDependencies":  {
                             "cross-env":  "^10.1.0",
@@ -24,8 +24,8 @@
                          "openai":  "^4.20.1"
                      },
     "build":  {
-                  "appId":  "com.loveflix.app",
-                  "productName":  "LoveFlix",
+                  "appId":  "com.actionflix.app",
+                  "productName":  "ActionFlix",
                   "directories":  {
                                       "output":  "dist"
                                   },
@@ -38,8 +38,8 @@
                             ],
                   "publish":  {
                                   "provider":  "github",
-                                  "owner":  "janvanwassenhove",
-                                  "repo":  "LoveFlix"
+                                  "owner":  "wullemsb",
+                                  "repo":  "ActionFlix"
                               },
                   "win":  {
                               "target":  [
@@ -51,7 +51,7 @@
                                              }
                                          ],
                               "icon":  "assets/icon.ico",
-                              "publisherName":  "LoveFlix Team",
+                              "publisherName":  "ActionFlix Team",
                               "sign":  null,
                               "signingHashAlgorithms":  [
 
@@ -83,7 +83,7 @@
                                "uninstallerIcon":  "assets/icon.ico",
                                "createDesktopShortcut":  true,
                                "createStartMenuShortcut":  true,
-                               "shortcutName":  "LoveFlix"
+                               "shortcutName":  "ActionFlix"
                            },
                   "dmg":  {
                               "contents":  [
