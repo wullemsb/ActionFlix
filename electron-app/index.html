@@ -469,9 +469,23 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- API Keys Section -->
+        <!-- AI Provider Section -->
         <div class="settings-section">
-          <h3 class="settings-section-title">API Keys</h3>
+          <h3 class="settings-section-title">AI Provider</h3>
+          <div class="settings-group-compact">
+            <label class="settings-label-compact">Select AI Provider</label>
+            <select id="aiProviderSelect" class="settings-select-compact">
+              <option value="openai">OpenAI</option>
+              <option value="azure">Azure OpenAI</option>
+              <option value="ollama">Ollama (Local)</option>
+            </select>
+            <p class="settings-hint-compact">Choose which AI service to use for transformations</p>
+          </div>
+        </div>
+
+        <!-- OpenAI Settings -->
+        <div class="settings-section" id="openaiSettings">
+          <h3 class="settings-section-title">OpenAI Configuration</h3>
           <div class="settings-group-compact">
             <label class="settings-label-compact" data-i18n="settings.apiKeyLabel">OpenAI API Key</label>
             <div id="envKeyNotice" class="env-key-notice hidden">
@@ -485,20 +499,6 @@
             <p class="settings-hint-compact" data-i18n="settings.apiKeyHint">Stored locally or set via environment variable</p>
           </div>
           
-          <div class="settings-group-compact">
-            <label class="settings-label-compact" data-i18n="settings.tmdbApiKeyLabel">TMDB API Key <span class="optional-label">(Optional)</span></label>
-            <div style="display: flex; gap: 8px; align-items: flex-start;">
-              <input type="password" id="tmdbApiKeyInput" class="settings-input-compact" data-i18n-placeholder="settings.tmdbPlaceholder" placeholder="Your TMDB API Key" style="flex: 1;">
-              <button id="testTmdbBtn" class="btn-secondary-compact" data-i18n="settings.testKey">Test</button>
-            </div>
-            <div id="tmdbTestResult" class="tmdb-test-result hidden"></div>
-            <p class="settings-hint-compact"><span data-i18n="settings.tmdbHint">Get from</span> <a href="https://www.themoviedb.org/settings/api" target="_blank">themoviedb.org</a></p>
-          </div>
-        </div>
-        
-        <!-- AI Models Section -->
-        <div class="settings-section">
-          <h3 class="settings-section-title">AI Models</h3>
           <div class="settings-grid">
             <div class="settings-group-compact">
               <label class="settings-label-compact" data-i18n="settings.imageModelLabel">Image Model</label>
@@ -519,6 +519,104 @@
                 <option value="gpt-5-nano">GPT-5 Nano</option>
               </select>
             </div>
+          </div>
+        </div>
+        
+        <!-- Azure OpenAI Settings -->
+        <div class="settings-section hidden" id="azureSettings">
+          <h3 class="settings-section-title">Azure OpenAI Configuration</h3>
+          <div class="settings-group-compact">
+            <label class="settings-label-compact">Azure Endpoint</label>
+            <input type="text" id="azureEndpointInput" class="settings-input-compact" placeholder="https://your-resource.openai.azure.com">
+            <p class="settings-hint-compact">Your Azure OpenAI resource endpoint URL</p>
+          </div>
+          
+          <div class="settings-group-compact">
+            <label class="settings-label-compact">Azure API Key</label>
+            <input type="password" id="azureApiKeyInput" class="settings-input-compact" placeholder="Your Azure API Key">
+            <p class="settings-hint-compact">Found in Azure Portal under Keys and Endpoint</p>
+          </div>
+          
+          <div class="settings-group-compact">
+            <label class="settings-label-compact">API Version</label>
+            <input type="text" id="azureApiVersionInput" class="settings-input-compact" placeholder="2024-02-15-preview">
+            <p class="settings-hint-compact">Azure API version (default: 2024-02-15-preview)</p>
+          </div>
+          
+          <div class="settings-grid">
+            <div class="settings-group-compact">
+              <label class="settings-label-compact">Text Deployment Name</label>
+              <input type="text" id="azureDeploymentTextInput" class="settings-input-compact" placeholder="gpt-4">
+              <p class="settings-hint-compact">Your GPT deployment name</p>
+            </div>
+            
+            <div class="settings-group-compact">
+              <label class="settings-label-compact">Image Deployment Name</label>
+              <input type="text" id="azureDeploymentImageInput" class="settings-input-compact" placeholder="dall-e-3">
+              <p class="settings-hint-compact">Your DALL-E deployment name</p>
+            </div>
+          </div>
+          
+          <div class="settings-grid">
+            <div class="settings-group-compact">
+              <label class="settings-label-compact" data-i18n="settings.imageModelLabel">Base Image Model</label>
+              <select id="azureImageModelSelect" class="settings-select-compact">
+                <option value="dall-e-3">DALL-E 3</option>
+                <option value="dall-e-2">DALL-E 2</option>
+              </select>
+              <p class="settings-hint-compact">Model type deployed in Azure</p>
+            </div>
+            
+            <div class="settings-group-compact">
+              <label class="settings-label-compact" data-i18n="settings.textModelLabel">Base Text Model</label>
+              <select id="azureTextModelSelect" class="settings-select-compact">
+                <option value="gpt-5.2">GPT-5.2</option>
+                <option value="gpt-5-mini">GPT-5 Mini</option>
+                <option value="gpt-4">GPT-4</option>
+                <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+              </select>
+              <p class="settings-hint-compact">Model type deployed in Azure</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Ollama Settings -->
+        <div class="settings-section hidden" id="ollamaSettings">
+          <h3 class="settings-section-title">Ollama Configuration</h3>
+          <div class="settings-group-compact">
+            <label class="settings-label-compact">Ollama Base URL</label>
+            <input type="text" id="ollamaBaseUrlInput" class="settings-input-compact" placeholder="http://localhost:11434">
+            <p class="settings-hint-compact">URL where Ollama is running (default: http://localhost:11434)</p>
+          </div>
+          
+          <div class="settings-group-compact">
+            <label class="settings-label-compact">Text Model Name</label>
+            <input type="text" id="ollamaModelTextInput" class="settings-input-compact" placeholder="llama2">
+            <p class="settings-hint-compact">Ollama model for text generation (e.g., llama2, mistral, codellama)</p>
+          </div>
+          
+          <div class="settings-group-compact">
+            <label class="settings-label-compact">Image Model Name <span class="optional-label">(Optional)</span></label>
+            <input type="text" id="ollamaModelImageInput" class="settings-input-compact" placeholder="">
+            <p class="settings-hint-compact">⚠️ Ollama doesn't natively support image generation. Leave empty to disable poster generation, or use a compatible model if available.</p>
+          </div>
+        </div>
+        
+        <!-- TMDB API Section -->
+        <div class="settings-section">
+          <h3 class="settings-section-title">TMDB API (Optional)</h3>
+        <!-- TMDB API Section -->
+        <div class="settings-section">
+          <h3 class="settings-section-title">TMDB API (Optional)</h3>
+          <div class="settings-group-compact">
+            <label class="settings-label-compact" data-i18n="settings.tmdbApiKeyLabel">TMDB API Key <span class="optional-label">(Optional)</span></label>
+            <div style="display: flex; gap: 8px; align-items: flex-start;">
+              <input type="password" id="tmdbApiKeyInput" class="settings-input-compact" data-i18n-placeholder="settings.tmdbPlaceholder" placeholder="Your TMDB API Key" style="flex: 1;">
+              <button id="testTmdbBtn" class="btn-secondary-compact" data-i18n="settings.testKey">Test</button>
+            </div>
+            <div id="tmdbTestResult" class="tmdb-test-result hidden"></div>
+            <p class="settings-hint-compact"><span data-i18n="settings.tmdbHint">Get from</span> <a href="https://www.themoviedb.org/settings/api" target="_blank">themoviedb.org</a></p>
           </div>
         </div>
         

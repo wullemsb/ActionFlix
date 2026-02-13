@@ -368,11 +368,31 @@ function getApiKey() {
 ipcMain.handle('get-settings', () => {
   const envApiKey = process.env.OPENAI_API_KEY;
   return {
+    // AI Provider settings
+    aiProvider: store.get('aiProvider', 'openai'),
+    
+    // OpenAI settings
     apiKey: store.get('apiKey', ''),
     envApiKey: envApiKey || null,  // Let UI know if env key exists
     hasEnvApiKey: !!envApiKey,
+    
+    // Azure OpenAI settings
+    azureEndpoint: store.get('azureEndpoint', ''),
+    azureApiKey: store.get('azureApiKey', ''),
+    azureApiVersion: store.get('azureApiVersion', '2024-02-15-preview'),
+    azureDeploymentText: store.get('azureDeploymentText', ''),
+    azureDeploymentImage: store.get('azureDeploymentImage', ''),
+    
+    // Ollama settings
+    ollamaBaseUrl: store.get('ollamaBaseUrl', 'http://localhost:11434'),
+    ollamaModelText: store.get('ollamaModelText', 'llama2'),
+    ollamaModelImage: store.get('ollamaModelImage', ''),
+    
+    // Model settings
     imageModel: store.get('imageModel', 'dall-e-3'),
     textModel: store.get('textModel', 'gpt-5.2'),
+    
+    // Other settings
     language: store.get('language', 'English'),
     tmdbApiKey: store.get('tmdbApiKey', ''),
     country: store.get('country', 'BE')
@@ -380,9 +400,29 @@ ipcMain.handle('get-settings', () => {
 });
 
 ipcMain.handle('save-settings', (event, settings) => {
+  // AI Provider
+  store.set('aiProvider', settings.aiProvider);
+  
+  // OpenAI settings
   store.set('apiKey', settings.apiKey);
+  
+  // Azure OpenAI settings
+  store.set('azureEndpoint', settings.azureEndpoint);
+  store.set('azureApiKey', settings.azureApiKey);
+  store.set('azureApiVersion', settings.azureApiVersion);
+  store.set('azureDeploymentText', settings.azureDeploymentText);
+  store.set('azureDeploymentImage', settings.azureDeploymentImage);
+  
+  // Ollama settings
+  store.set('ollamaBaseUrl', settings.ollamaBaseUrl);
+  store.set('ollamaModelText', settings.ollamaModelText);
+  store.set('ollamaModelImage', settings.ollamaModelImage);
+  
+  // Model settings
   store.set('imageModel', settings.imageModel);
   store.set('textModel', settings.textModel);
+  
+  // Other settings
   store.set('language', settings.language);
   store.set('tmdbApiKey', settings.tmdbApiKey);
   store.set('country', settings.country);
@@ -474,19 +514,105 @@ ipcMain.handle('delete-top10-collection', (event, collectionId) => {
   return filteredCollections;
 });
 
-// OpenAI API calls
-function getOpenAIClient() {
-  const apiKey = getApiKey();
-  if (!apiKey) {
-    throw new Error('OpenAI API key not configured. Set OPENAI_API_KEY environment variable or add it in Settings.');
+// AI Provider client initialization
+function getAIClient() {
+  const provider = store.get('aiProvider', 'openai');
+  
+  if (provider === 'openai') {
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      throw new Error('OpenAI API key not configured. Set OPENAI_API_KEY environment variable or add it in Settings.');
+    }
+    return new OpenAI({ apiKey });
+  } 
+  else if (provider === 'azure') {
+    const azureApiKey = store.get('azureApiKey', '');
+    const azureEndpoint = store.get('azureEndpoint', '');
+    
+    if (!azureApiKey || !azureEndpoint) {
+      throw new Error('Azure OpenAI API key and endpoint not configured. Please add them in Settings.');
+    }
+    
+    return new OpenAI({
+      apiKey: azureApiKey,
+      baseURL: `${azureEndpoint}/openai/deployments`,
+      defaultQuery: { 'api-version': store.get('azureApiVersion', '2024-02-15-preview') },
+      defaultHeaders: { 'api-key': azureApiKey }
+    });
+  } 
+  else if (provider === 'ollama') {
+    const ollamaBaseUrl = store.get('ollamaBaseUrl', 'http://localhost:11434');
+    
+    return new OpenAI({
+      apiKey: 'ollama', // Ollama doesn't require API key but OpenAI SDK needs one
+      baseURL: `${ollamaBaseUrl}/v1`
+    });
   }
-  return new OpenAI({ apiKey });
+  
+  throw new Error(`Unknown AI provider: ${provider}`);
+}
+
+// Helper function to get the appropriate model name based on provider
+function getModelName(modelType) {
+  const provider = store.get('aiProvider', 'openai');
+  
+  if (provider === 'azure') {
+    // For Azure, use deployment names instead of model names
+    if (modelType === 'text') {
+      const deployment = store.get('azureDeploymentText', '');
+      if (!deployment) {
+        throw new Error('Azure text deployment name not configured. Please add it in Settings.');
+      }
+      return deployment;
+    } else if (modelType === 'image') {
+      const deployment = store.get('azureDeploymentImage', '');
+      if (!deployment) {
+        throw new Error('Azure image deployment name not configured. Please add it in Settings.');
+      }
+      return deployment;
+    }
+  } 
+  else if (provider === 'ollama') {
+    // For Ollama, use custom model names
+    if (modelType === 'text') {
+      return store.get('ollamaModelText', 'llama2');
+    } else if (modelType === 'image') {
+      const imageModel = store.get('ollamaModelImage', '');
+      if (!imageModel) {
+        throw new Error('Ollama does not natively support image generation. Please use OpenAI or Azure OpenAI for poster generation.');
+      }
+      return imageModel;
+    }
+  }
+  
+  // For OpenAI, use the standard model names
+  if (modelType === 'text') {
+    return store.get('textModel', 'gpt-5.2');
+  } else if (modelType === 'image') {
+    return store.get('imageModel', 'dall-e-3');
+  }
+  
+  throw new Error(`Unknown model type: ${modelType}`);
+}
+
+// Helper function to get the base model type (for model-specific logic)
+function getBaseModelType(modelType) {
+  const provider = store.get('aiProvider', 'openai');
+  
+  // For Azure and Ollama, we still use the OpenAI model settings to determine behavior
+  if (modelType === 'image') {
+    return store.get('imageModel', 'dall-e-3');
+  } else if (modelType === 'text') {
+    return store.get('textModel', 'gpt-5.2');
+  }
+  
+  return '';
 }
 
 ipcMain.handle('get-movie-info', async (event, movieTitle) => {
   try {
-    const openai = getOpenAIClient();
-    const textModel = store.get('textModel', 'gpt-5.2');
+    const openai = getAIClient();
+    const textModel = getModelName('text');
     
     console.log(`Fetching movie info for: "${movieTitle}" using model: ${textModel}`);
     
@@ -561,8 +687,8 @@ ipcMain.handle('romanticize-movie', async (event, { title, summary }) => {
     console.log('=== ROMANTICIZE MOVIE START ===');
     console.log('Input:', { title, summary });
     
-    const openai = getOpenAIClient();
-    const textModel = store.get('textModel', 'gpt-5.2');
+    const openai = getAIClient();
+    const textModel = getModelName('text');
     const language = store.get('language', 'English');
     
     console.log('Using text model:', textModel, 'Language:', language);
@@ -790,8 +916,8 @@ ipcMain.handle('generate-tags', async (event, { romanticTitle, romanticSummary, 
   try {
     console.log('=== GENERATE TAGS START ===');
     
-    const openai = getOpenAIClient();
-    const textModel = store.get('textModel', 'gpt-5.2');
+    const openai = getAIClient();
+    const textModel = getModelName('text');
     const language = store.get('language', 'English');
     
     const response = await openai.chat.completions.create({
@@ -846,8 +972,8 @@ ipcMain.handle('generate-poster', async (event, { originalTitle, actionTitle, ge
     console.log('=== POSTER GENERATION START ===');
     console.log('Input params:', JSON.stringify({ originalTitle, actionTitle, genre, originalSummary, originalPosterUrl }, null, 2));
     
-    const openai = getOpenAIClient();
-    const imageModel = store.get('imageModel', 'dall-e-3');
+    const openai = getAIClient();
+    const imageModel = getModelName('image');
     console.log('Using image model:', imageModel);
     
     // Use actionTitle, fallback to originalTitle if empty
@@ -1309,19 +1435,20 @@ ${selectedStyle.artStyle ? `- Art style: ${selectedStyle.artStyle}` : ''}
     console.log('Full prompt:', prompt);
     
     let response;
+    const baseImageModel = getBaseModelType('image');
     
     console.log('Calling OpenAI images.generate...');
     
-    if (imageModel === 'dall-e-2') {
+    if (baseImageModel === 'dall-e-2') {
       response = await openai.images.generate({
-        model: 'dall-e-2',
+        model: imageModel,
         prompt: prompt,
         n: 1,
         size: '1024x1024'
       });
-    } else if (imageModel === 'dall-e-3') {
+    } else if (baseImageModel === 'dall-e-3') {
       response = await openai.images.generate({
-        model: 'dall-e-3',
+        model: imageModel,
         prompt: prompt,
         n: 1,
         size: '1024x1024',
@@ -1388,16 +1515,17 @@ ${selectedStyle.artStyle ? `- Art style: ${selectedStyle.artStyle}` : ''}
       
       // First retry: Use the sanitized prompt that removes brand names
       try {
-        const openai = getOpenAIClient();
-        const imageModel = store.get('imageModel', 'dall-e-3');
+        const openai = getAIClient();
+        const imageModel = getModelName('image');
         
         const saferPrompt = createSaferImagePrompt(originalTitle, actionTitle, genre, originalSummary);
         console.log('Safer prompt (attempt 1):', saferPrompt);
         
+        const baseImageModel = getBaseModelType('image');
         let retryResponse;
-        if (imageModel === 'dall-e-3') {
+        if (baseImageModel === 'dall-e-3') {
           retryResponse = await openai.images.generate({
-            model: 'dall-e-3',
+            model: imageModel,
             prompt: saferPrompt,
             n: 1,
             size: '1024x1024',
@@ -1438,17 +1566,18 @@ ${selectedStyle.artStyle ? `- Art style: ${selectedStyle.artStyle}` : ''}
           console.log('Safety rejection on attempt 1, trying ultra-safe prompt (attempt 2)...');
           
           try {
-            const openai = getOpenAIClient();
-            const imageModel = store.get('imageModel', 'dall-e-3');
+            const openai = getAIClient();
+            const imageModel = getModelName('image');
             
             const titleForUltraSafe = actionTitle && actionTitle.trim() ? actionTitle : originalTitle || 'Maximum Impact';
             const ultraSafePrompt = createUltraSafeImagePrompt(titleForUltraSafe);
             console.log('Ultra-safe prompt (attempt 2):', ultraSafePrompt);
             
+            const baseImageModel = getBaseModelType('image');
             let retryResponse2;
-            if (imageModel === 'dall-e-3') {
+            if (baseImageModel === 'dall-e-3') {
               retryResponse2 = await openai.images.generate({
-                model: 'dall-e-3',
+                model: imageModel,
                 prompt: ultraSafePrompt,
                 n: 1,
                 size: '1024x1024',

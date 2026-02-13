@@ -1457,12 +1457,58 @@ function initSettings() {
   const closeSettingsBtn = document.getElementById('closeSettingsBtn');
   const cancelSettingsBtn = document.getElementById('cancelSettingsBtn');
   const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+  const aiProviderSelect = document.getElementById('aiProviderSelect');
+  
+  // Function to show/hide provider-specific settings
+  function updateProviderSettings(provider) {
+    const openaiSettings = document.getElementById('openaiSettings');
+    const azureSettings = document.getElementById('azureSettings');
+    const ollamaSettings = document.getElementById('ollamaSettings');
+    
+    openaiSettings.classList.add('hidden');
+    azureSettings.classList.add('hidden');
+    ollamaSettings.classList.add('hidden');
+    
+    if (provider === 'openai') {
+      openaiSettings.classList.remove('hidden');
+    } else if (provider === 'azure') {
+      azureSettings.classList.remove('hidden');
+    } else if (provider === 'ollama') {
+      ollamaSettings.classList.remove('hidden');
+    }
+  }
+  
+  // Provider selection change handler
+  aiProviderSelect.addEventListener('change', () => {
+    updateProviderSettings(aiProviderSelect.value);
+  });
   
   settingsBtn.addEventListener('click', async () => {
     const settings = await window.api.getSettings();
+    
+    // AI Provider
+    document.getElementById('aiProviderSelect').value = settings.aiProvider || 'openai';
+    
+    // OpenAI settings
     document.getElementById('apiKeyInput').value = settings.apiKey || '';
     document.getElementById('imageModelSelect').value = settings.imageModel || 'dall-e-3';
     document.getElementById('textModelSelect').value = settings.textModel || 'gpt-5.2';
+    
+    // Azure settings
+    document.getElementById('azureEndpointInput').value = settings.azureEndpoint || '';
+    document.getElementById('azureApiKeyInput').value = settings.azureApiKey || '';
+    document.getElementById('azureApiVersionInput').value = settings.azureApiVersion || '2024-02-15-preview';
+    document.getElementById('azureDeploymentTextInput').value = settings.azureDeploymentText || '';
+    document.getElementById('azureDeploymentImageInput').value = settings.azureDeploymentImage || '';
+    document.getElementById('azureImageModelSelect').value = settings.imageModel || 'dall-e-3';
+    document.getElementById('azureTextModelSelect').value = settings.textModel || 'gpt-5.2';
+    
+    // Ollama settings
+    document.getElementById('ollamaBaseUrlInput').value = settings.ollamaBaseUrl || 'http://localhost:11434';
+    document.getElementById('ollamaModelTextInput').value = settings.ollamaModelText || 'llama2';
+    document.getElementById('ollamaModelImageInput').value = settings.ollamaModelImage || '';
+    
+    // Other settings
     document.getElementById('languageSelect').value = settings.language || 'English';
     document.getElementById('tmdbApiKeyInput').value = settings.tmdbApiKey || '';
     document.getElementById('countrySelect').value = settings.country || 'BE';
@@ -1476,6 +1522,9 @@ function initSettings() {
       envKeyNotice.classList.add('hidden');
       document.getElementById('apiKeyInput').placeholder = 'sk-...';
     }
+    
+    // Update provider-specific settings visibility
+    updateProviderSettings(settings.aiProvider || 'openai');
     
     settingsModal.classList.remove('hidden');
   });
@@ -1548,14 +1597,39 @@ function initSettings() {
       tmdbTestResult.textContent = '✅ TMDB API key validated';
     }
     
+    const selectedProvider = document.getElementById('aiProviderSelect').value;
     const settings = {
+      // AI Provider
+      aiProvider: selectedProvider,
+      
+      // OpenAI settings
       apiKey: document.getElementById('apiKeyInput').value,
       imageModel: document.getElementById('imageModelSelect').value,
       textModel: document.getElementById('textModelSelect').value,
+      
+      // Azure settings
+      azureEndpoint: document.getElementById('azureEndpointInput').value,
+      azureApiKey: document.getElementById('azureApiKeyInput').value,
+      azureApiVersion: document.getElementById('azureApiVersionInput').value,
+      azureDeploymentText: document.getElementById('azureDeploymentTextInput').value,
+      azureDeploymentImage: document.getElementById('azureDeploymentImageInput').value,
+      
+      // Ollama settings
+      ollamaBaseUrl: document.getElementById('ollamaBaseUrlInput').value,
+      ollamaModelText: document.getElementById('ollamaModelTextInput').value,
+      ollamaModelImage: document.getElementById('ollamaModelImageInput').value,
+      
+      // Other settings
       language: document.getElementById('languageSelect').value,
       tmdbApiKey: newTmdbKey,
       country: document.getElementById('countrySelect').value
     };
+    
+    // When Azure is selected, also update the base model types from Azure-specific selects
+    if (selectedProvider === 'azure') {
+      settings.imageModel = document.getElementById('azureImageModelSelect').value;
+      settings.textModel = document.getElementById('azureTextModelSelect').value;
+    }
     
     await window.api.saveSettings(settings);
     
