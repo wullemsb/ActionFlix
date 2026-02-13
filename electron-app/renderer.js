@@ -155,7 +155,7 @@ const translations = {
     'top10.subtitle': 'Transformeer de populairste rom-coms & liefdesverhalen in explosieve actie blockbusters',
     'top10.moviesCategory': 'Films in Jouw Land Vandaag',
     'top10.seriesCategory': 'TV Series in Jouw Land Vandaag',
-    'top10.actionCategory': 'Actione Films',
+    'top10.actionCategory': 'Actie Films',
     'top10.scifiCategory': 'Drama & Komedie',
     'top10.romanticize': 'Actioneren',
     'top10.romanticizeAll': 'Actioneer Alle 10',
@@ -303,10 +303,8 @@ const translations = {
     'toast.noMovieToSave': 'Aucun film à sauvegarder!',
     'toast.savedToCollection': 'Ajouté à votre collection!',
     'toast.removedFromCollection': 'Retiré de la collection 💥',
-    'toast.creatingPoster': 'Création de l\'affiche romantique...',
+    'toast.creatingPoster': 'Création de l\'affiche d\'action...',
     'toast.transformComplete': 'Transformation terminée!',
-    'toast.noMovieToSave': 'Aucun film à sauvegarder!',
-    'toast.savedToCollection': 'Ajouté à votre collection!',
     'toast.failedToLoadTop10': 'Échec du chargement du Top 10',
     'toast.failedToLoadCollection': 'Échec du chargement de la collection'
   },
@@ -458,7 +456,7 @@ const translations = {
     'collection.cat.actionRomance': 'Pure Action',
     'collection.cat.fantasyLove': 'Fantasy-Action-Epen',
     'collection.cat.sciFiRomance': 'Sci-Fi Kriegsführung',
-    'collection.cat.gothicRomance': 'Dunkle Action Gotische & Dunkle Romantik Noir',
+    'collection.cat.gothicRomance': 'Dunkle Action Noir',
     'collection.cat.comedyRomance': 'Adrenalin-Schub',
     'collection.cat.classicRomance': 'Klassische Action-Filme',
     'settings.title': 'Einstellungen',
@@ -602,7 +600,7 @@ const translations = {
     'home.feature3Title': 'Pôster Explosivo',
     'home.feature3Desc': 'Obtenha um incrível pôster de filme de ação gerado por IA',
     'home.feature4Title': 'Salvar na Coleção',
-    'home.feature4Desc': 'Construa sua coleção pessoal de filmes de açãos',
+    'home.feature4Desc': 'Construa sua coleção pessoal de filmes de ação',
     'transform.title': 'Transforme Seu Filme',
     'transform.inputPlaceholder': 'Digite um título de filme (ex: Die Hard, Terminator, Mad Max...)',
     'transform.romanticize': 'Actionizar',
@@ -624,7 +622,7 @@ const translations = {
     'top10.romanticize': 'Actionizar',
     'top10.romanticizeAll': 'Actionizar os 10',
     'top10.romanticizing': 'Actionizando...',
-    'top10.romanticGenre.movies': 'Filmes De Açãos',
+    'top10.romanticGenre.movies': 'Filmes De Ação',
     'top10.romanticGenre.series': 'Séries de TV de Ação',
     'top10.romanticGenre.action': 'Ação Pura',
     'top10.romanticGenre.scifi': 'Thrillers de Ação',
@@ -826,7 +824,7 @@ const translations = {
     'collection.cat.actionRomance': '순수 액션',
     'collection.cat.fantasyLove': '판타지 액션 서사시',
     'collection.cat.sciFiRomance': 'SF 전쟁',
-    'collection.cat.gothicRomance': '다크 액션 고딕 & 다크 로맨스 느와르',
+    'collection.cat.gothicRomance': '다크 액션 느와르',
     'collection.cat.comedyRomance': '아드레날린 러시',
     'collection.cat.classicRomance': '클래식 액션 영화',
     'settings.title': '설정',
@@ -1644,18 +1642,18 @@ async function transformMovie() {
     updateProgressBar(3);
     showToast('Creating action-packed story...');
     
-    const romantic = await window.api.romanticizeMovie({
+    const actionized = await window.api.romanticizeMovie({
       title: movieTitle,
       summary: movieInfo.summary || `A movie titled "${movieTitle}"`
     });
     
-    console.log('Actionize result:', JSON.stringify(romantic, null, 2));
+    console.log('Actionize result:', JSON.stringify(actionized, null, 2));
     console.log('Movie info:', JSON.stringify(movieInfo, null, 2));
     
     // Generate tags based on action content
     const tags = await window.api.generateTags({
-      romanticTitle: romantic.romanticTitle,
-      romanticSummary: romantic.romanticSummary,
+      romanticTitle: actionized.romanticTitle,
+      romanticSummary: actionized.romanticSummary,
       genre: movieInfo.genre || ''
     });
     
@@ -1665,8 +1663,8 @@ async function transformMovie() {
     currentMovieData = {
       id: Date.now(),
       originalTitle: movieTitle,
-      romanticTitle: romantic.romanticTitle,
-      romanticSummary: romantic.romanticSummary,
+      romanticTitle: actionized.romanticTitle,
+      romanticSummary: actionized.romanticSummary,
       tags: tags || ['Action', 'Explosions', 'AI Generated'],
       posterUrl: null
     };

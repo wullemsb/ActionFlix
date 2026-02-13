@@ -556,7 +556,7 @@ If the movie title seems misspelled, find the closest matching real movie. If yo
   }
 });
 
-ipcMain.handle('actionize-movie', async (event, { title, summary }) => {
+ipcMain.handle('romanticize-movie', async (event, { title, summary }) => {
   try {
     console.log('=== ROMANTICIZE MOVIE START ===');
     console.log('Input:', { title, summary });
@@ -777,8 +777,8 @@ Remove all brand names, franchise references, and trademarked content. Focus on 
     console.log('=== ACTIONIZE MOVIE END ===');
     
     return {
-      actionTitle,
-      actionSummary
+      romanticTitle: actionTitle,
+      romanticSummary: actionSummary
     };
   } catch (error) {
     console.error('Error in actionize-movie:', error);
@@ -786,7 +786,7 @@ Remove all brand names, franchise references, and trademarked content. Focus on 
   }
 });
 
-ipcMain.handle('generate-tags', async (event, { actionTitle, actionSummary, genre }) => {
+ipcMain.handle('generate-tags', async (event, { romanticTitle, romanticSummary, genre }) => {
   try {
     console.log('=== GENERATE TAGS START ===');
     
@@ -803,7 +803,7 @@ ipcMain.handle('generate-tags', async (event, { actionTitle, actionSummary, genr
         },
         { 
           role: 'user', 
-          content: `Generate 4-6 engaging tags in ${language} for this action movie:\n\nTitle: ${actionTitle}\n\nSummary: ${actionSummary}\n\nOriginal Genre: ${genre || 'Unknown'}\n\nReturn only a JSON array of tags like: ["Tag1", "Tag2", "Tag3", "Tag4"]` 
+          content: `Generate 4-6 engaging tags in ${language} for this action movie:\n\nTitle: ${romanticTitle}\n\nSummary: ${romanticSummary}\n\nOriginal Genre: ${genre || 'Unknown'}\n\nReturn only a JSON array of tags like: ["Tag1", "Tag2", "Tag3", "Tag4"]` 
         }
       ],
       max_completion_tokens: 150,
