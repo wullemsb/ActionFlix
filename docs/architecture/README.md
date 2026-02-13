@@ -1,8 +1,8 @@
-# LoveFlix Architecture Documentation
+# ActionFlix Architecture Documentation
 
 ## Overview
 
-This directory contains comprehensive architectural documentation for LoveFlix using the **4+1 Architectural View Model**. This model provides multiple perspectives on the system architecture to address the concerns of different stakeholders.
+This directory contains comprehensive architectural documentation for ActionFlix using the **4+1 Architectural View Model**. This model provides multiple perspectives on the system architecture to address the concerns of different stakeholders.
 
 ## What is the 4+1 Model?
 
@@ -215,7 +215,7 @@ The 4+1 architectural view model organizes the description of a software archite
 1. **Parallel API Calls**
    - Generate title and summary concurrently
    - Reduce total transformation time by 30-50%
-   - Trade-off: Summary may not reference exact romantic title
+   - Trade-off: Summary may not reference exact action-packed title
 
 2. **Database Integration**
    - SQLite for faster collection queries

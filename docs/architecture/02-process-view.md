@@ -1,10 +1,10 @@
 # Process View
 
-The Process View describes the runtime behavior, concurrency, synchronization, and communication patterns in the LoveFlix application.
+The Process View describes the runtime behavior, concurrency, synchronization, and communication patterns in the ActionFlix application.
 
 ## Overview
 
-LoveFlix employs different process models:
+ActionFlix employs different process models:
 - **Python CLI**: Single-threaded synchronous execution
 - **Electron Desktop**: Multi-process architecture with asynchronous operations
 
