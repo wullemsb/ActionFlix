@@ -1,3 +1,5 @@
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/wullemsb/ActionFlix)
+
 # ActionFlix 💥
 
 "Because even rom-coms get explosive transformations... and everything is better with action!"
